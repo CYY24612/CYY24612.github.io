@@ -4,202 +4,107 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="嵌入式软件工程师/系统架构师个人作品集 - 展示高可靠、可扩展的智能系统开发经验与项目">
+    <meta name="description" content="CYY - 嵌入式软件工程师个人作品集，展示高可靠、可扩展的智能系统开发经验与项目">
     <meta name="keywords" content="嵌入式软件,系统架构,C++,STM32,PCIE,通信系统,边缘计算">
-    <meta name="author" content="Your Name">
+    <meta name="author" content="CYY">
     <meta name="theme-color" content="#1a1d2e">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Software Engineer Portfolio">
-    <meta property="og:description" content="嵌入式软件工程师/系统架构师个人作品集">
+    <meta property="og:title" content="CYY · 嵌入式软件工程师个人作品集">
+    <meta property="og:description" content="嵌入式软件工程师/系统架构师个人作品集 - 软硬件协同设计、高性能通信系统">
     <meta property="og:type" content="website">
-    <title>Cyrus</title>
-    <!-- Google Fonts: Plus Jakarta Sans (display) + Instrument Sans (body) -->
+    <title> Cyrus | 嵌入式软件工程师 </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* ========================================
-               完整调色板系统 - OKLCH色彩空间
-               品牌色: 琥珀色 (hue 75) - 温暖、专业、独特
-               ======================================== */
-            
-            /* --- 品牌强调色 (10% 视觉占比) --- */
-            --accent: oklch(72% 0.14 75);        /* 琥珀色主色调 */
-            --accent-hover: oklch(65% 0.13 75);  /* 悬停状态 */
-            --accent-active: oklch(58% 0.12 75); /* 激活状态 */
-            --accent-glow: oklch(82% 0.1 75);    /* 发光/高亮 */
-            --accent-subtle: oklch(85% 0.06 75); /* 微妙强调 */
-            
-            /* --- 9级中性色阶 (带hue 250微小chroma) --- */
-            /* 用于背景、表面、边框的系统化深度 */
-            --neutral-1: oklch(97% 0.005 250);   /* 最亮表面(浅色主题使用) */
-            --neutral-2: oklch(94% 0.008 250);   /* 高亮表面 - text-primary基准 */
-            --neutral-3: oklch(85% 0.01 250);    /* 次要表面(浅色主题使用) */
-            --neutral-4: oklch(76% 0.015 250);   /* 三级文本基准 - text-secondary */
-            --neutral-5: oklch(65% 0.02 250);    /* 边框/分隔线基准 */
-            --neutral-6: oklch(58% 0.025 250);   /* text-muted基准 */
-            --neutral-7: oklch(45% 0.03 250);    /* 禁用状态 - text-disabled */
-            --neutral-8: oklch(32% 0.035 250);   /* 卡片表面深度(滚动条等) */
-            --neutral-9: oklch(22% 0.04 250);    /* 侧边栏背景 - bg-sidebar */
-            --neutral-10: oklch(16% 0.045 250);  /* 卡片背景 - bg-elevated */
-            --neutral-11: oklch(12% 0.05 250);   /* 最深背景 - bg-dark */
-            
-            /* --- 语义颜色 (success/error/warning/info) --- */
-            --success: oklch(72% 0.12 145);      /* 绿色 - 成功/完成 */
-            --success-hover: oklch(65% 0.11 145);
-            --success-subtle: oklch(72% 0.08 145 / 0.15);
-            --error: oklch(62% 0.18 25);         /* 红色 - 错误/危险 */
-            --error-hover: oklch(55% 0.16 25);
-            --error-subtle: oklch(62% 0.12 25 / 0.15);
-            --warning: oklch(78% 0.14 85);       /* 黄色 - 警告/注意 */
-            --warning-hover: oklch(70% 0.13 85);
-            --warning-subtle: oklch(78% 0.1 85 / 0.15);
-            --info: oklch(70% 0.1 220);          /* 蓝色 - 信息/提示 */
+            --accent: oklch(72% 0.14 75);
+            --accent-hover: oklch(65% 0.13 75);
+            --accent-active: oklch(58% 0.12 75);
+            --accent-glow: oklch(82% 0.1 75);
+            --accent-subtle: oklch(85% 0.06 75);
+            --neutral-1: oklch(97% 0.005 250);
+            --neutral-2: oklch(94% 0.008 250);
+            --neutral-4: oklch(76% 0.015 250);
+            --neutral-6: oklch(58% 0.025 250);
+            --neutral-7: oklch(45% 0.03 250);
+            --neutral-9: oklch(22% 0.04 250);
+            --neutral-10: oklch(16% 0.045 250);
+            --neutral-11: oklch(12% 0.05 250);
+            --success: oklch(72% 0.12 145);
+            --error: oklch(62% 0.18 25);
+            --warning: oklch(78% 0.14 85);
+            --info: oklch(70% 0.1 220);
             --info-hover: oklch(63% 0.09 220);
             --info-subtle: oklch(70% 0.06 220 / 0.15);
             --info-border: oklch(70% 0.1 220 / 0.25);
-            
-            /* --- 背景色 (应用60-30-10规则的60%中性色) --- */
-            --bg-dark: var(--neutral-11);         /* 主背景 - 12% */
-            --bg-elevated: var(--neutral-10);     /* 卡片背景 - 16% */
-            --bg-sidebar: var(--neutral-9);       /* 侧边栏 - 22% */
-            
-            /* --- 文本色 (应用60-30-10规则的30%文本) --- */
-            --text-primary: var(--neutral-2);     /* 主要文本 - 94% */
-            --text-secondary: var(--neutral-4);   /* 次要文本 - 76% */
-            --text-muted: var(--neutral-6);       /* 辅助文本 - 58% */
-            --text-disabled: var(--neutral-7);    /* 禁用文本 - 45% */
-            --text-inverse: var(--neutral-11);    /* 反色文本 - 12% */
-            
-            /* --- 边框和分隔线 --- */
-            --border-subtle: oklch(65% 0.02 250 / 0.15);  /* 微妙边框 */
-            --border-default: oklch(65% 0.02 250 / 0.25); /* 默认边框 */
-            --border-strong: oklch(65% 0.02 250 / 0.4);   /* 强调边框 */
-            
-            /* --- 阴影 - 通过表面颜色而非强阴影创建深度 --- */
+            --bg-dark: var(--neutral-11);
+            --bg-elevated: var(--neutral-10);
+            --bg-sidebar: var(--neutral-9);
+            --text-primary: var(--neutral-2);
+            --text-secondary: var(--neutral-4);
+            --text-muted: var(--neutral-6);
+            --text-disabled: var(--neutral-7);
+            --text-inverse: var(--neutral-11);
+            --border-subtle: oklch(65% 0.02 250 / 0.15);
+            --border-default: oklch(65% 0.02 250 / 0.25);
             --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.3);
             --shadow-md: 0 4px 8px oklch(0% 0 0 / 0.35), 0 2px 4px oklch(0% 0 0 / 0.2);
             --shadow-lg: 0 8px 16px oklch(0% 0 0 / 0.4), 0 4px 8px oklch(0% 0 0 / 0.25);
-            --shadow-glow: 0 0 20px oklch(72% 0.14 75 / 0.15);  /* 琥珀色发光 */
-            
-            /* --- 字体栈 --- */
+            --shadow-glow: 0 0 20px oklch(72% 0.14 75 / 0.15);
             --font-display: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
             --font-body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
-            
-            /* --- 5级字体层级系统 --- */
-            --font-xs: 0.75rem;
-            --font-sm: 0.875rem;
-            --font-base: 1rem;
-            --font-lg: 1.25rem;
-            --font-xl: clamp(1.5rem, 4vw, 2.5rem);
-            
-            /* --- 流体字体变体 --- */
             --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
             --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
             --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
             --text-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
             --text-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
             --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
-            
-            /* --- 行高系统 --- */
-            --leading-none: 1;
             --leading-tight: 1.15;
             --leading-snug: 1.3;
             --leading-normal: 1.6;
             --leading-relaxed: 1.7;
-            
-            /* --- 4pt基础间距系统 --- */
-            --space-1: 0.25rem;   /* 4px */
-            --space-2: 0.5rem;    /* 8px */
-            --space-3: 0.75rem;   /* 12px */
-            --space-4: 1rem;      /* 16px */
-            --space-5: 1.5rem;    /* 24px */
-            --space-6: 2rem;      /* 32px */
-            --space-7: 3rem;      /* 48px */
-            --space-8: 4rem;      /* 64px */
-            --space-9: 6rem;      /* 96px */
-            
-            /* --- 缓动函数系统 --- */
-            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);    /* 微交互(hover/按钮) */
-            --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);   /* 中等转换(卡片/菜单) */
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);     /* 大型动画(入场/hero) */
-            --ease-in-quart: cubic-bezier(0.7, 0, 0.84, 0);     /* 退出动画 */
-            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);      /* 状态切换 */
-            
-            /* --- 时长系统 (100/300/500规则) --- */
-            --duration-instant: 100ms;    /* 即时反馈(按钮按下/切换) */
-            --duration-fast: 150ms;       /* 快速反馈(颜色变化) */
-            --duration-normal: 200ms;     /* 微交互(hover/tooltip) */
-            --duration-slow: 300ms;       /* 状态变化(菜单/卡片) */
-            --duration-slower: 500ms;     /* 布局变化(手风琴/模态) */
-            --duration-enter: 600ms;      /* 入场动画 */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.5rem;
+            --space-6: 2rem;
+            --space-7: 3rem;
+            --space-8: 4rem;
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+            --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 200ms;
+            --duration-slow: 300ms;
+            --duration-enter: 600ms;
         }
 
-        /* ========================================
-           亮色主题(通过JS切换)
-           ======================================== */
         :root.light-theme {
-            /* 背景色: 浅色(90-97%),带微小chroma */
             --neutral-1: oklch(97% 0.005 250);
             --neutral-2: oklch(94% 0.008 250);
-            --neutral-3: oklch(90% 0.01 250);
             --neutral-4: oklch(45% 0.03 250);
-            --neutral-5: oklch(65% 0.02 250);
             --neutral-6: oklch(58% 0.025 250);
             --neutral-7: oklch(70% 0.015 250);
-            --neutral-8: oklch(85% 0.01 250);
             --neutral-9: oklch(90% 0.01 250);
             --neutral-10: oklch(94% 0.008 250);
             --neutral-11: oklch(97% 0.005 250);
-
-            /* 文本色: 深色(12-45%) */
             --text-primary: oklch(16% 0.04 250);
             --text-secondary: oklch(32% 0.035 250);
             --text-muted: oklch(50% 0.025 250);
             --text-disabled: oklch(70% 0.015 250);
             --text-inverse: oklch(97% 0.005 250);
-
-            /* 边框: 亮色主题需要更明显的边框 */
             --border-subtle: oklch(60% 0.03 250 / 0.25);
             --border-default: oklch(55% 0.035 250 / 0.35);
-            --border-strong: oklch(45% 0.04 250 / 0.5);
-
-            /* 阴影: 亮色主题使用更柔和的阴影 */
             --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.08);
             --shadow-md: 0 4px 8px oklch(0% 0 0 / 0.1), 0 2px 4px oklch(0% 0 0 / 0.06);
             --shadow-lg: 0 8px 16px oklch(0% 0 0 / 0.12), 0 4px 8px oklch(0% 0 0 / 0.08);
             --shadow-glow: 0 0 15px oklch(72% 0.14 75 / 0.1);
         }
 
-        /* 亮色主题: 项目卡片 */
-        :root.light-theme .project-item {
-            background: oklch(94% 0.008 250);
-        }
-        :root.light-theme .project-item:hover {
-            background: oklch(90% 0.01 250);
-        }
-
-        /* 亮色主题: 滚动条 */
-        :root.light-theme ::-webkit-scrollbar-track {
-            background: oklch(97% 0.005 250);
-        }
-        :root.light-theme ::-webkit-scrollbar-thumb {
-            background: oklch(80% 0.02 250);
-        }
-        :root.light-theme ::-webkit-scrollbar-thumb:hover {
-            background: oklch(65% 0.03 250);
-        }
-
-        /* 主题过渡动画 */
         .theme-transitioning * {
             transition: background-color var(--duration-slow) var(--ease-out-quart),
                         color var(--duration-slow) var(--ease-out-quart),
@@ -209,876 +114,507 @@
 
         body {
             font-family: var(--font-body);
-            font-size: var(--font-base);
-            font-weight: 400;  /* 暗色模式下降低字重 */
+            font-size: var(--text-base);
+            font-weight: 400;
             line-height: var(--leading-normal);
             background-color: var(--bg-dark);
             color: var(--text-primary);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ========================================
-           鼠标视差背景 - brittanychiang风格
-           点状网格(静态) + 鼠标跟随聚光灯(动态)
-           ======================================== */
-        :root {
-            --mouse-x: 50vw;
-            --mouse-y: 50vh;
-        }
+        /* ===== 背景系统 ===== */
+        :root { --mouse-x: 50vw; --mouse-y: 50vh; }
 
         .parallax-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            /* 层1: 点状网格(静态,低透明度) */
-            background-image:
-                radial-gradient(circle, rgba(201, 148, 26, 0.04) 1px, transparent 1px);
-            background-size: 24px 24px;  /* 点间距24px */
+            position: fixed; inset: 0; pointer-events: none; z-index: 1;
+            background-image: radial-gradient(circle, rgba(201, 148, 26, 0.04) 1px, transparent 1px);
+            background-size: 24px 24px;
         }
 
-        /* 鼠标跟随聚光灯光晕(动态) */
         .parallax-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            background: radial-gradient(
-                circle 350px at var(--mouse-x) var(--mouse-y),
-                rgba(201, 148, 26, 0.1) 0%,
-                transparent 70%
-            );
+            position: fixed; inset: 0; pointer-events: none; z-index: 2;
+            background: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), rgba(201, 148, 26, 0.1) 0%, transparent 70%);
             will-change: background;
         }
 
-        /* 亮色主题: 降低网格和光晕透明度 */
         :root.light-theme .parallax-bg {
-            background-image:
-                radial-gradient(circle, rgba(201, 148, 26, 0.03) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(201, 148, 26, 0.03) 1px, transparent 1px);
         }
         :root.light-theme .parallax-glow {
-            background: radial-gradient(
-                circle 350px at var(--mouse-x) var(--mouse-y),
-                rgba(201, 148, 26, 0.06) 0%,
-                transparent 70%
-            );
+            background: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), rgba(201, 148, 26, 0.06) 0%, transparent 70%);
         }
 
-        /* 粒子背景 - rangonomics风格: 降低存在感 */
         #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.2;  /* 降低透明度，减少视觉干扰 */
-            pointer-events: none;
+            position: fixed; inset: 0; z-index: 0; opacity: 0.2; pointer-events: none;
         }
 
-        /* 整体布局容器 */
+        /* ===== 布局 ===== */
         .portfolio-container {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: 100vh;
-            padding: var(--space-6);
-            gap: var(--space-6);
+            position: relative; z-index: 2; display: flex;
+            max-width: 1400px; margin: 0 auto; min-height: 100vh;
+            padding: var(--space-6); gap: var(--space-6);
         }
 
-        /* ========= 左侧边栏 ========= */
+        /* ===== 进度指示器 - 屏幕最左侧边缘 ===== */
+        .progress-track {
+            position: fixed; left: 0; top: 0; bottom: 0;
+            width: 3px; z-index: 100; pointer-events: none;
+            background: oklch(72% 0.14 75 / 0.08);
+        }
+        .progress-bar {
+            position: absolute; left: 0; top: 0;
+            width: 100%; height: 0;
+            background: var(--accent);
+            border-radius: 0 2px 2px 0;
+            transition: height 100ms linear;
+        }
+
+        /* ===== 侧边栏 ===== */
         .sidebar {
-            flex: 0 0 320px;
+            flex: 0 0 300px;
             background: var(--bg-sidebar);
             backdrop-filter: blur(8px);
-            border-radius: var(--space-4);  /* 减小圆角 */
+            border-radius: var(--space-4);
             padding: var(--space-6) var(--space-5);
-            box-shadow: var(--shadow-md);  /* 减小阴影 */
+            box-shadow: var(--shadow-md);
             border: 1px solid var(--border-subtle);
             height: fit-content;
             position: sticky;
             top: var(--space-6);
+            align-self: flex-start;
             transition: box-shadow var(--duration-slow) var(--ease-out-quint);
         }
-        .sidebar:hover {
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-        }
+        .sidebar:hover { box-shadow: var(--shadow-lg), var(--shadow-glow); }
+
         .avatar {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto var(--space-5);
-            background: var(--bg-elevated);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-md);
-            border: 2px solid var(--border-subtle);
+            width: 140px; height: 140px; margin: 0 auto var(--space-5);
+            border-radius: 50%; overflow: hidden;
+            box-shadow: var(--shadow-md); border: 3px solid var(--accent);
         }
-        .avatar i {
-            font-size: 4rem;
-            color: var(--accent);
-        }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
         .sidebar h1 {
-            font-family: var(--font-display);
-            font-size: var(--text-2xl);
-            font-weight: 800;
-            line-height: var(--leading-tight);
-            text-align: left;  /* 不对称设计 - 左对齐 */
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
-            margin-bottom: var(--space-2);
+            font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800;
+            line-height: var(--leading-tight); letter-spacing: -0.02em;
+            color: var(--text-primary); margin-bottom: var(--space-2);
         }
         .sidebar .title {
-            text-align: left;  /* 左对齐 */
-            color: var(--accent-glow);
-            font-weight: 500;
-            font-size: var(--text-sm);
-            line-height: var(--leading-snug);
-            margin-bottom: var(--space-4);
+            color: var(--accent-glow); font-weight: 500; font-size: var(--text-sm);
+            line-height: var(--leading-snug); margin-bottom: var(--space-4);
         }
         .sidebar .bio {
-            text-align: left;  /* 左对齐 */
-            color: var(--text-secondary);
-            font-size: var(--text-sm);
-            font-weight: 400;
-            margin-bottom: var(--space-5);
-            line-height: var(--leading-relaxed);
+            color: var(--text-secondary); font-size: var(--text-sm); font-weight: 400;
+            margin-bottom: var(--space-5); line-height: var(--leading-relaxed);
         }
-        .contact-info {
-            margin-bottom: var(--space-5);
-        }
+
+        .contact-info { margin-bottom: var(--space-5); }
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            color: var(--text-secondary);
-            font-size: var(--text-sm);
-            margin-bottom: var(--space-3);
+            display: flex; align-items: center; gap: var(--space-3);
+            color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-3);
         }
-        .contact-item i {
-            width: 24px;
-            color: var(--accent);
+        .contact-item i { width: 20px; color: var(--accent); text-align: center; }
+        .contact-item a {
+            color: var(--text-secondary); text-decoration: none;
+            transition: color var(--duration-normal) var(--ease-out-quart);
         }
-        .social-links {
-            display: flex;
-            justify-content: flex-start;  /* 左对齐 */
-            gap: var(--space-4);
-            margin: var(--space-5) 0;
-        }
+        .contact-item a:hover { color: var(--accent); }
+
+        .social-links { display: flex; gap: var(--space-3); margin: var(--space-5) 0; }
         .social-links a {
-            /* 触摸目标: 44px最小(通过padding扩展) */
-            background: var(--border-subtle);
-            width: 24px;  /* 视觉尺寸 */
-            height: 24px;
-            padding: 10px;  /* 扩展到44px触摸区域 */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-glow);
-            transition: all var(--duration-normal) var(--ease-out-quart);
+            background: var(--border-subtle); width: 20px; height: 20px; padding: 12px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: var(--accent-glow); transition: all var(--duration-normal) var(--ease-out-quart);
             border: 1px solid var(--border-subtle);
         }
         .social-links a:hover {
+            background: var(--accent); color: var(--text-inverse); border-color: var(--accent);
+        }
+
+        .theme-toggle {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; min-height: 44px; background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle); border-radius: var(--space-3);
+            color: var(--accent); font-size: var(--text-sm); cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out-quart);
+            gap: var(--space-2); padding: var(--space-3); margin-top: var(--space-4);
+        }
+        .theme-toggle:hover { background: var(--accent-hover); color: var(--text-inverse); border-color: var(--accent); }
+
+        /* ===== 极简进度指示器导航 ===== */
+        .progress-nav {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 120px;
+            background: oklch(45% 0.03 250 / 0.2);
+            border-radius: 2px;
+            z-index: 100;
+        }
+        .progress-nav-bar {
+            width: 100%;
+            height: 20%;
             background: var(--accent);
-            color: var(--text-inverse);
-            transform: translateY(-2px);
-            border-color: var(--accent);
+            border-radius: 2px;
+            transition: height var(--duration-slow) var(--ease-out-quart),
+                        transform var(--duration-slow) var(--ease-out-quart);
         }
-        .sidebar .btn-soft {
-            display: block;
-            text-align: center;
-            background: var(--bg-elevated);
-            border: 1px solid var(--border-subtle);
-            padding: var(--space-3) var(--space-5);
-            min-height: 44px;
-            border-radius: var(--space-5);
-            font-weight: 500;
-            color: var(--accent);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--duration-normal) var(--ease-out-quart);
-            text-decoration: none;
-            font-size: var(--text-sm);
-            line-height: 1.5;
+        .progress-nav-dots {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            z-index: 101;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 120px;
         }
-        .sidebar .btn-soft:hover {
-            background: var(--accent-hover);
-            color: var(--text-inverse);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* ========= 右侧主内容 ========= */
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-        }
-        
-        /* 内容区域 - 通过间距而非卡片创建分组 */
-        .content-section {
-            margin-bottom: var(--space-8);  /* 48px - 大间距创建视觉节奏 */
-        }
-        .content-section:last-child {
-            margin-bottom: var(--space-6);
-        }
-        
-        /* 卡片 - 仅用于真正需要独立展示的内容 */
-        .card {
-            background: var(--bg-elevated);
-            border-radius: var(--space-6);
-            padding: var(--space-6);
-            margin-bottom: var(--space-6);
-            box-shadow: var(--shadow-md);
-            transition: box-shadow var(--duration-slow) var(--ease-out-quint);
-            border: 1px solid var(--border-subtle);
-        }
-        .card:hover {
-            box-shadow: var(--shadow-lg);
-        }
-        
-        /* 无卡片样式 - 通过间距和排版自然分组 */
-        .section-divider {
-            border: none;
-            border-top: 1px solid var(--border-subtle);
-            margin: var(--space-8) 0;
-        }
-        .section-title {
-            font-family: var(--font-display);
-            font-size: var(--text-xl);
-            font-weight: 700;
-            line-height: var(--leading-tight);
-            margin-bottom: var(--space-4);
-            letter-spacing: 0.05em;  /* 全大写标题需要稍大的字间距 */
-            text-transform: uppercase;
-        }
-        .section-title span {
-            display: inline-block;
-        }
-        .section-title i {
-            color: var(--accent);
-            font-size: var(--text-lg);
-        }
-
-        /* rangonomics风格: ASCII分隔线 */
-        .section-separator {
-            color: var(--text-muted);
-            font-family: 'Courier New', monospace;
-            font-size: var(--text-sm);
-            margin: var(--space-7) 0;
-            opacity: 0.5;
-            user-select: none;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        /* 移除旧的hr分隔线 */
-        .section-divider {
-            display: none;
-        }
-
-        /* ========================================
-           工作时间轴 - 极简工程风
-           ======================================== */
-        .timeline {
-            position: relative;
-            padding-left: var(--space-7);  /* 48px - 为时间轴留出空间 */
-        }
-
-        /* 垂直中线 */
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 11px;  /* 中线位置(节点中心) */
-            top: 8px;
-            bottom: 8px;
-            width: 2px;
-            background: linear-gradient(
-                to bottom,
-                transparent 0%,
-                var(--accent) 5%,
-                var(--accent) 95%,
-                transparent 100%
-            );
-            opacity: 0.3;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: var(--space-7);
-        }
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        /* 时间节点 - 琥珀色圆点 */
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: calc(-1 * var(--space-7) + 5px);  /* 中线对齐 */
-            top: 12px;
-            width: 14px;
-            height: 14px;
+        .progress-nav-dot {
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
-            background: var(--bg-dark);
-            border: 3px solid var(--accent);
+            background: oklch(45% 0.03 250 / 0.3);
+            cursor: pointer;
             transition: all var(--duration-normal) var(--ease-out-quart);
-            z-index: 1;
         }
-
-        /* 节点hover效果 */
-        .timeline-item:hover::before {
-            transform: scale(1.3);
+        .progress-nav-dot:hover,
+        .progress-nav-dot.active {
+            background: var(--accent);
             box-shadow: 0 0 0 4px oklch(72% 0.14 75 / 0.15);
         }
 
-        /* 卡片式内容 */
+        /* ===== 主内容区 ===== */
+        .main-content { 
+            flex: 1; 
+            min-width: 0;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        .main-content::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .content-section { margin-bottom: var(--space-8); }
+        .content-section:last-child { margin-bottom: 0; }
+
+        .section-separator {
+            color: var(--text-muted); font-family: 'Courier New', monospace;
+            font-size: var(--text-sm); margin: var(--space-7) 0; opacity: 0.5;
+            user-select: none; overflow: hidden; white-space: nowrap;
+        }
+
+        .section-title {
+            font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700;
+            line-height: var(--leading-tight); margin-bottom: var(--space-5);
+            letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
+        }
+
+        /* ===== 时间轴 ===== */
+        .timeline { position: relative; padding-left: var(--space-7); }
+        .timeline::before {
+            content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px;
+            background: linear-gradient(to bottom, transparent 0%, var(--accent) 5%, var(--accent) 95%, transparent 100%);
+            opacity: 0.3;
+        }
+
+        .timeline-item { position: relative; margin-bottom: var(--space-7); }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: calc(-1 * var(--space-7) + 5px); top: 12px;
+            width: 14px; height: 14px; border-radius: 50%; background: var(--bg-dark);
+            border: 3px solid var(--accent);
+            transition: all var(--duration-normal) var(--ease-out-quart); z-index: 1;
+        }
+        .timeline-item:hover::before { transform: scale(1.3); box-shadow: 0 0 0 4px oklch(72% 0.14 75 / 0.15); }
+
         .timeline-card {
-            background: var(--bg-elevated);
-            border-radius: var(--space-3);  /* 12px - 小圆角 */
-            padding: var(--space-5);  /* 24px */
-            border: 1px solid var(--border-subtle);
+            background: var(--bg-elevated); border-radius: var(--space-3);
+            padding: var(--space-5); border: 1px solid var(--border-subtle);
             transition: all var(--duration-normal) var(--ease-out-quart);
         }
-        .timeline-card:hover {
-            border-color: oklch(72% 0.14 75 / 0.3);
-            box-shadow: var(--shadow-sm);
-            transform: translateX(2px);
-        }
+        .timeline-card:hover { border-color: oklch(72% 0.14 75 / 0.3); box-shadow: var(--shadow-sm); }
 
-        /* 卡片头部 */
         .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: var(--space-2);
-            margin-bottom: var(--space-3);
+            display: flex; justify-content: space-between; align-items: baseline;
+            flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-3);
         }
-
         .timeline-role {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: var(--text-lg);
-            line-height: var(--leading-snug);
+            font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg);
+            line-height: var(--leading-snug); color: var(--text-primary);
         }
-
-        .timeline-company {
-            color: var(--accent-glow);
-            font-size: var(--text-sm);
-            font-weight: 500;
-        }
-
+        .timeline-company { color: var(--accent-glow); font-size: var(--text-sm); font-weight: 500; }
         .timeline-date {
-            font-size: var(--text-xs);
-            background: var(--info-subtle);
-            padding: var(--space-1) var(--space-3);
-            border-radius: var(--space-5);
-            color: var(--info);
-            font-weight: 500;
-            white-space: nowrap;
+            font-size: var(--text-xs); background: var(--info-subtle);
+            padding: var(--space-1) var(--space-3); border-radius: var(--space-5);
+            color: var(--info); font-weight: 500; white-space: nowrap;
         }
 
-        /* 成果列表 */
-        .timeline-achievements {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .timeline-achievements { list-style: none; padding: 0; margin: 0; }
         .timeline-achievements li {
-            margin-bottom: var(--space-2);
-            font-size: var(--text-sm);
-            font-weight: 400;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: var(--space-5);  /* 24px - 为Emoji留空间 */
+            margin-bottom: var(--space-2); font-size: var(--text-sm); font-weight: 400;
+            color: var(--text-secondary); position: relative; padding-left: var(--space-4);
             line-height: var(--leading-relaxed);
-        }
-        .timeline-achievements li:last-child {
-            margin-bottom: 0;
         }
         .timeline-achievements li::before {
-            content: attr(data-emoji);
-            position: absolute;
-            left: 0;
-            top: 0;
+            content: "▹"; position: absolute; left: 0; color: var(--accent);
         }
 
-        /* 滚动触发入场动画(stagger延迟) */
         .timeline-item {
-            opacity: 0;
-            transform: translateX(12px);
+            opacity: 0; transform: translateX(12px);
             transition: opacity var(--duration-enter) var(--ease-out-expo),
                         transform var(--duration-enter) var(--ease-out-expo);
         }
-        .timeline-item.is-visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        .timeline-item.is-visible { opacity: 1; transform: translateX(0); }
 
-        /* 亮色主题适配 */
-        :root.light-theme .timeline::before {
-            opacity: 0.2;
-        }
-        :root.light-theme .timeline-item::before {
-            background: var(--bg-elevated);
-        }
+        :root.light-theme .timeline::before { opacity: 0.2; }
+        :root.light-theme .timeline-item::before { background: var(--bg-elevated); }
 
-        /* 移动端: 单列,简化时间轴 */
-        @media (max-width: 768px) {
-            .timeline {
-                padding-left: var(--space-5);  /* 24px - 更紧凑 */
-            }
-            .timeline::before {
-                left: 8px;
-                width: 2px;
-            }
-            .timeline-item::before {
-                left: calc(-1 * var(--space-5) + 3px);
-                width: 12px;
-                height: 12px;
-                border-width: 2px;
-                top: 10px;
-            }
-            .timeline-card {
-                padding: var(--space-4);  /* 16px - 更紧凑 */
-            }
-        }
-
-        /* 项目网格 - rangonomics风格: 简洁工程风 */
+        /* ===== 项目展示 ===== */
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: var(--space-4);
-            margin-top: var(--space-3);
-            container-type: inline-size;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-4); margin-top: var(--space-3);
         }
         .project-item {
-            background: var(--bg-elevated);
-            border-radius: var(--space-3);  /* 减小圆角 */
-            padding: var(--space-4);
+            background: var(--bg-elevated); border-radius: var(--space-3);
+            padding: var(--space-5); border: 1px solid var(--border-subtle);
             transition: all var(--duration-normal) var(--ease-out-quart);
-            border: 1px solid var(--border-subtle);
         }
-        .project-item:hover {
-            background: oklch(24% 0.045 250);
-            box-shadow: var(--shadow-sm);
-            transform: translateY(-1px);  /* 减小hover位移 */
-        }
+        .project-item:hover { box-shadow: var(--shadow-sm); }
+
+        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-3); }
         .project-name {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: var(--text-base);  /* 减小字号 */
-            line-height: var(--leading-snug);
-            margin-bottom: var(--space-2);
+            font-family: var(--font-display); font-weight: 700; font-size: var(--text-base);
+            line-height: var(--leading-snug); color: var(--text-primary);
         }
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-2);
-            margin: var(--space-3) 0;
-        }
-        .tech-badge {
-            background: var(--info-subtle);
-            font-size: var(--text-xs);
-            padding: var(--space-1) var(--space-2);
-            border-radius: var(--space-5);
-            color: var(--info);
-            font-weight: 500;
-            border: 1px solid var(--info-border);
-        }
-        .project-desc {
-            font-size: var(--text-sm);
-            font-weight: 300;
-            color: var(--text-secondary);
-            line-height: var(--leading-relaxed);
-        }
-        
-        /* 容器查询: 窄容器中调整布局 */
-        @container (max-width: 320px) {
-            .project-item {
-                padding: var(--space-4);
-            }
-            .project-icon {
-                font-size: 1.5rem;
-                margin-bottom: var(--space-2);
-            }
-        }
+        .project-role { font-size: var(--text-xs); color: var(--accent); font-weight: 500; white-space: nowrap; }
 
-        /* 技能云 - 通过间距自然分组 */
-        .skills-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-3);  /* 12px - 紧凑排列 */
-            margin-top: var(--space-3);
+        .project-tech { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0; }
+        .tech-badge {
+            background: var(--info-subtle); font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-2); border-radius: var(--space-5);
+            color: var(--info); font-weight: 500; border: 1px solid var(--info-border);
         }
+        .project-desc { font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed); }
+        .project-achievements { list-style: none; padding: 0; margin: var(--space-3) 0 0; }
+        .project-achievements li {
+            margin-bottom: var(--space-2); font-size: var(--text-sm); color: var(--text-secondary);
+            position: relative; padding-left: var(--space-4); line-height: var(--leading-relaxed);
+        }
+        .project-achievements li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+
+        /* ===== 技能分组 ===== */
+        .skill-group { margin-bottom: var(--space-4); }
+        .skill-group:last-child { margin-bottom: 0; }
+        .skill-group-label {
+            font-size: var(--text-xs); font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-2);
+        }
+        .skills-cloud { display: flex; flex-wrap: wrap; gap: var(--space-2); }
         .skill-tag {
-            background: var(--bg-elevated);
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--space-5);
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: all var(--duration-normal) var(--ease-out-quart);
+            background: var(--bg-elevated); padding: var(--space-2) var(--space-3);
+            border-radius: var(--space-5); font-size: var(--text-sm); font-weight: 500;
+            color: var(--text-secondary); transition: all var(--duration-normal) var(--ease-out-quart);
             border: 1px solid var(--border-subtle);
         }
-        .skill-tag:hover {
-            background: var(--accent);
-            color: var(--text-inverse);
-            border-color: var(--accent);
-        }
+        .skill-tag:hover { background: var(--accent); color: var(--text-inverse); border-color: var(--accent); }
 
-        /* ========================================
-           入场动画系统 (使用stagger延迟)
-           ======================================== */
-        
-        /* 默认隐藏，JS触发后显示 */
+        /* ===== 亮点/教育/职业目标 ===== */
+        .education-card {
+            background: var(--bg-elevated); border-radius: var(--space-3);
+            padding: var(--space-5); border: 1px solid var(--border-subtle);
+        }
+        .education-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-2); }
+        .education-degree { font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); color: var(--text-primary); }
+        .education-date { font-size: var(--text-sm); color: var(--text-muted); }
+        .education-desc { font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed); }
+
+        .career-box {
+            background: var(--bg-elevated); padding: var(--space-5);
+            border-radius: var(--space-3); border: 1px solid var(--border-subtle);
+            border-left: 4px solid var(--accent);
+        }
+        .career-box p { font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3); }
+        .career-box p:last-child { margin-bottom: 0; }
+
+        .highlights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-3); margin-top: var(--space-3); }
+        .highlight-item {
+            background: var(--bg-elevated); border-radius: var(--space-3);
+            padding: var(--space-4); border: 1px solid var(--border-subtle);
+            border-left: 3px solid var(--accent);
+        }
+        .highlight-icon { font-size: 1.5rem; margin-bottom: var(--space-2); }
+        .highlight-text { font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed); }
+
+        .drive-list { list-style: none; padding: 0; margin: var(--space-3) 0 0; }
+        .drive-list li {
+            margin-bottom: var(--space-3); font-size: var(--text-sm); color: var(--text-secondary);
+            line-height: var(--leading-relaxed); padding-left: var(--space-5); position: relative;
+        }
+        .drive-list li::before { content: attr(data-emoji); position: absolute; left: 0; top: 0; }
+
+        /* ===== 联系区域 ===== */
+        .contact-actions { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-4); }
+        .btn-contact {
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            background: var(--bg-elevated); border: 1px solid var(--border-subtle);
+            padding: var(--space-3) var(--space-5); min-height: 44px; border-radius: var(--space-3);
+            font-weight: 500; color: var(--text-secondary); text-decoration: none;
+            font-size: var(--text-sm); transition: all var(--duration-normal) var(--ease-out-quart);
+        }
+        .btn-contact:hover { background: var(--accent); color: var(--text-inverse); border-color: var(--accent); }
+
+        /* ===== 入场动画 ===== */
         .content-section {
-            opacity: 0;
-            transform: translateY(20px);
+            opacity: 0; transform: translateY(20px);
             transition: opacity var(--duration-enter) var(--ease-out-expo),
                         transform var(--duration-enter) var(--ease-out-expo);
         }
-        .content-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* 交错延迟(总时间封顶500ms) */
+        .content-section.is-visible { opacity: 1; transform: translateY(0); }
         .content-section:nth-child(1) { transition-delay: 0ms; }
-        .content-section:nth-child(2) { transition-delay: 100ms; }
-        .content-section:nth-child(3) { transition-delay: 200ms; }
-        .content-section:nth-child(4) { transition-delay: 300ms; }
-        .content-section:nth-child(5) { transition-delay: 400ms; }
-        .content-section:nth-child(6) { transition-delay: 500ms; }
-        
-        /* 侧边栏入场动画 */
+        .content-section:nth-child(2) { transition-delay: 80ms; }
+        .content-section:nth-child(3) { transition-delay: 160ms; }
+        .content-section:nth-child(4) { transition-delay: 240ms; }
+        .content-section:nth-child(5) { transition-delay: 320ms; }
+        .content-section:nth-child(6) { transition-delay: 400ms; }
+        .content-section:nth-child(7) { transition-delay: 480ms; }
+        .content-section:nth-child(8) { transition-delay: 560ms; }
+
         .sidebar {
-            opacity: 0;
-            transform: translateX(-20px);
+            opacity: 0; transform: translateX(-20px);
             animation: sidebar-enter var(--duration-enter) var(--ease-out-expo) forwards;
             animation-delay: 100ms;
         }
-        .sidebar.is-loaded {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
+        .sidebar.is-loaded { opacity: 1; transform: translateX(0); }
         @keyframes sidebar-enter {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        /* 性能优化: 仅对transform和opacity使用will-change */
-        .content-section,
-        .sidebar {
-            will-change: opacity, transform;
-        }
-        .content-section.is-visible,
-        .sidebar.is-loaded {
-            will-change: auto;
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        /* ========================================
-           无障碍: 焦点状态
-           ======================================== */
-        *:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-        a:focus-visible,
-        button:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 3px;
-        }
-
-        /* ========================================
-           自定义滚动条
-           ======================================== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: oklch(32% 0.035 250);
-            border-radius: var(--space-5);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: oklch(45% 0.03 250);
-        }
-
-        /* ========================================
-           主题切换按钮
-           ======================================== */
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            min-height: 44px;
-            margin-top: var(--space-4);
-            background: var(--bg-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--space-5);
-            color: var(--accent);
-            font-size: var(--text-sm);
-            cursor: pointer;
-            transition: all var(--duration-normal) var(--ease-out-quart);
-            gap: var(--space-2);
-            padding: var(--space-3);
-        }
-        .theme-toggle:hover {
-            background: var(--accent-hover);
-            color: var(--text-inverse);
-            border-color: var(--accent);
-        }
-        .theme-toggle:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-        .theme-toggle i {
-            font-size: 1.2rem;
-        }
-
-        /* ========================================
-           无障碍: 跳过链接
-           ======================================== */
+        /* ===== 无障碍 ===== */
+        *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
         .skip-link {
-            position: absolute;
-            left: -9999px;
-            top: 0;
-            z-index: 1000;
-            background: var(--accent);
-            color: var(--text-inverse);
-            padding: var(--space-3) var(--space-5);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 0 0 var(--space-3) 0;
+            position: absolute; left: -9999px; top: 0; z-index: 1000;
+            background: var(--accent); color: var(--text-inverse);
+            padding: var(--space-3) var(--space-5); text-decoration: none; font-weight: 600;
         }
-        .skip-link:focus {
-            left: 0;
-            outline: 3px solid var(--accent-glow);
-            outline-offset: 0;
-        }
+        .skip-link:focus { left: 0; outline: 3px solid var(--accent-glow); }
 
-        /* ========================================
-           OKLCH降级方案(不支持OKLCH的浏览器)
-           ======================================== */
+        /* ===== 滚动条 ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: oklch(32% 0.035 250); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: oklch(45% 0.03 250); }
+
+        /* ===== OKLCH降级 ===== */
         @supports not (color: oklch(0% 0 0)) {
             :root {
-                --accent: #c9941a;
-                --accent-hover: #b08015;
-                --accent-glow: #e6c050;
-                --bg-dark: #1a1d2e;
-                --bg-elevated: #222638;
-                --bg-sidebar: #282d42;
-                --text-primary: #e8ecf4;
-                --text-secondary: #b8c0d0;
-                --text-muted: #8a94a8;
+                --accent: #c9941a; --accent-hover: #b08015; --accent-glow: #e6c050;
+                --bg-dark: #1a1d2e; --bg-elevated: #222638; --bg-sidebar: #282d42;
+                --text-primary: #e8ecf4; --text-secondary: #b8c0d0; --text-muted: #8a94a8;
                 --border-subtle: rgba(100, 110, 140, 0.2);
-                --info: #5b9bd5;
-                --info-subtle: rgba(91, 155, 213, 0.15);
-                --info-border: rgba(91, 155, 213, 0.25);
+                --info: #5b9bd5; --info-subtle: rgba(91, 155, 213, 0.15); --info-border: rgba(91, 155, 213, 0.25);
             }
         }
 
-        /* ========================================
-           响应式: 移动端 (320px-768px)
-           ======================================== */
+        /* ===== 响应式: 移动端 ===== */
         @media (max-width: 768px) {
-            .portfolio-container {
-                flex-direction: column;
-                padding: var(--space-4);
-                gap: var(--space-4);
-            }
+            .portfolio-container { flex-direction: column; padding: var(--space-4); gap: var(--space-4); }
             .sidebar {
-                position: relative;
-                top: 0;
-                width: 100%;
-                flex: auto;
-                margin-bottom: var(--space-5);
-                border-radius: var(--space-5);
-                padding: var(--space-5) var(--space-4);
+                position: relative; top: 0; width: 100%; flex: auto; align-self: auto;
+                margin-bottom: var(--space-5); padding: var(--space-5) var(--space-4);
             }
-            .avatar {
-                width: 100px;
-                height: 100px;
-                margin-bottom: var(--space-4);
-            }
-            .avatar i {
-                font-size: 3rem;
-            }
-            .sidebar h1 {
-                font-size: var(--text-xl);
-                text-align: center;
-            }
-            .sidebar .title {
-                text-align: center;
-            }
-            .sidebar .bio {
-                text-align: center;
-            }
-            .social-links {
-                justify-content: center;
-            }
-            .section-title {
-                font-size: var(--text-lg);
-                margin-left: 0;  /* 移动端取消光学偏移 */
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;  /* 单列 */
-            }
-            .content-section {
-                margin-bottom: var(--space-6);
-            }
+            .avatar { width: 100px; height: 100px; }
+            .sidebar h1 { font-size: var(--text-xl); }
+            .section-title { font-size: var(--text-lg); }
+            .projects-grid, .highlights-grid { grid-template-columns: 1fr; }
+            .content-section { margin-bottom: var(--space-6); }
+            .timeline { padding-left: var(--space-5); }
+            .timeline::before { left: 8px; }
+            .timeline-item::before { left: calc(-1 * var(--space-5) + 3px); width: 12px; height: 12px; border-width: 2px; top: 10px; }
+            .timeline-card { padding: var(--space-4); }
+            .timeline-header { flex-direction: column; gap: var(--space-1); }
         }
 
-        /* ========================================
-           响应式: 平板 (769px-1024px)
-           ======================================== */
+        /* ===== 响应式: 平板 ===== */
         @media (min-width: 769px) and (max-width: 1024px) {
-            .portfolio-container {
-                max-width: 100%;
-                padding: var(--space-5);
-                gap: var(--space-5);
-            }
-            .sidebar {
-                flex: 0 0 280px;  /* 稍窄的侧边栏 */
-                padding: var(--space-5) var(--space-4);
-            }
-            .sidebar h1 {
-                font-size: var(--text-xl);
-            }
-            .projects-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            }
+            .portfolio-container { max-width: 100%; padding: var(--space-5); gap: var(--space-5); }
+            .sidebar { flex: 0 0 260px; }
+            .projects-grid, .highlights-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
         }
 
-        /* ========================================
-           响应式: 桌面 (>1025px)
-           ======================================== */
+        /* ===== 响应式: 桌面 ===== */
         @media (min-width: 1025px) {
-            .portfolio-container {
-                max-width: 1400px;
-                padding: var(--space-6);
-                gap: var(--space-6);
-            }
+            .portfolio-container { max-width: 1400px; padding: var(--space-6); gap: var(--space-6); }
         }
 
-        /* ========================================
-           无障碍: prefers-reduced-motion
-           ======================================== */
+        /* ===== prefers-reduced-motion ===== */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-            /* 保留必要的状态变化(如hover)，但移除运动效果 */
-            .content-section {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .sidebar {
-                opacity: 1;
-                transform: none;
-                animation: none;
-            }
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .content-section { opacity: 1; transform: none; transition: none; }
+            .sidebar { opacity: 1; transform: none; animation: none; }
         }
 
-        /* 响应式 */
-        @media (max-width: 900px) {
-            .portfolio-container {
-                flex-direction: column;
-                padding: var(--space-4);
-            }
-            .sidebar {
-                position: relative;
-                top: 0;
-                width: 100%;
-                flex: auto;
-                margin-bottom: var(--space-5);
-            }
-        }
-        hr {
-            border-color: var(--border-subtle);
-            margin: var(--space-6) 0;
-        }
-        a {
-            text-decoration: none;
-        }
-        ::selection {
-            background: var(--accent);
-            color: var(--text-inverse);
-        }
+        a { text-decoration: none; }
+        ::selection { background: var(--accent); color: var(--text-inverse); }
     </style>
 </head>
 <body>
-<!-- 跳过链接: 键盘用户直接跳转到主内容 -->
 <a href="#main-content" class="skip-link">跳转到主内容</a>
 
-<!-- 鼠标视差背景层 -->
+<!-- 极简进度指示器导航 -->
+<div class="progress-nav" aria-hidden="true">
+    <div class="progress-nav-bar" id="progressBar"></div>
+</div>
+<div class="progress-nav-dots" aria-label="页面导航">
+    <div class="progress-nav-dot" data-section="about" aria-label="关于我"></div>
+    <div class="progress-nav-dot" data-section="experience" aria-label="经验"></div>
+    <div class="progress-nav-dot" data-section="projects" aria-label="项目"></div>
+    <div class="progress-nav-dot" data-section="skills" aria-label="技能"></div>
+    <div class="progress-nav-dot" data-section="contact" aria-label="联系"></div>
+</div>
+
 <div class="parallax-bg"></div>
 <div class="parallax-glow" id="parallaxGlow"></div>
-
-<!-- 粒子背景 -->
 <div id="particles-js"></div>
 
 <div class="portfolio-container">
-    <!-- 左侧个人信息栏 -->
+    <!-- 侧边栏 -->
     <aside class="sidebar" role="complementary" aria-label="个人信息">
         <div class="avatar">
-            <i class="fas fa-user-astronaut"></i>
+            <img src="headCoin.png" alt="CYY 的个人头像">
         </div>
         <h1>CYY</h1>
-        <div class="title">嵌入式软件工程师 / 系统架构师</div>
-        <div class="bio">
-            构建高可靠、可扩展的智能系统，软硬件协同设计与性能优化。
-        </div>
+        <div class="title">嵌入式软件工程师 · 软硬件协同设计 · 高性能通信系统</div>
+        <div class="bio">构建高可靠、可扩展的智能系统，软硬件协同设计与性能优化。拥有从硬件底层到应用层的全栈视野。</div>
         <div class="contact-info">
-            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> 中国 · 武汉</div>
-            <div class="contact-item"><i class="fas fa-envelope"></i> 2716176542@qq.com</div>
-            <div class="contact-item"><i class="fas fa-phone-alt"></i> +86 156 2325 8601</div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:2716176542@qq.com">2716176542@qq.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>156 2325 8601</span>
+            </div>
         </div>
         <div class="social-links">
             <a href="https://github.com/CYY24612" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-github"></i>
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </a>
         </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="切换亮暗主题">
-            <i class="fas fa-sun" id="theme-icon"></i>
+            <i class="fas fa-sun" id="theme-icon"></i> 切换主题
         </button>
     </aside>
 
-    <!-- 右侧主要内容区 -->
+    <!-- 主内容 -->
     <main class="main-content" id="main-content" role="main" aria-label="主要内容">
         <!-- 关于我 -->
         <section class="content-section" aria-labelledby="about-heading">
-            <div class="section-title" id="about-heading">
-                <span>ABOUT ME</span>
-            </div>
+            <h2 class="section-title" id="about-heading">ABOUT ME</h2>
             <p style="color: var(--text-secondary); line-height: var(--leading-relaxed); max-width: 65ch;">
                 构建高可靠、可扩展的智能系统，软硬件协同设计与性能优化。拥有从硬件底层到应用层的全栈视野，热衷于解决复杂系统问题。
             </p>
@@ -1086,25 +622,24 @@
 
         <div class="section-separator">────────────────────────────────────────</div>
 
-        <!-- 经验与教育 -->
+        <!-- 工作经验 -->
         <section class="content-section" aria-labelledby="experience-heading">
-            <div class="section-title" id="experience-heading">
-                <span>EXPERIENCE & EDUCATION</span>
-            </div>
+            <h2 class="section-title" id="experience-heading">EXPERIENCE</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-card">
                         <div class="timeline-header">
                             <div>
-                                <div class="timeline-role">🔧 嵌入式软件工程师</div>
-                                <div class="timeline-company">某科技公司</div>
+                                <div class="timeline-role">嵌入式软件工程师</div>
+                                <div class="timeline-company">某军工科技企业</div>
                             </div>
-                            <div class="timeline-date">2024 – 至今</div>
+                            <div class="timeline-date">2024.06 – 至今</div>
                         </div>
                         <ul class="timeline-achievements">
-                            <li data-emoji="📈 ">负责核心通信系统的架构设计与性能优化，吞吐量提升10倍</li>
-                            <li data-emoji="👨🏽‍💻 ">主导跨平台C++库开发，实现Windows/Linux双环境自动化测试</li>
-                            <li data-emoji="🎯 ">引入设计模式与CI/CD流程，提高代码复用性与交付质量</li>
+                            <li>主导基于Qt/C++的PCIE板卡通信上位机开发，设计分层架构（驱动抽象层/数据缓存层/业务层），实现多板卡高速数据收发与实时监控</li>
+                            <li>重构PCIE驱动数据通路，通过DMA双缓冲与中断合并策略，吞吐量从4Gbps提升至40Gbps，长时间运行无丢包</li>
+                            <li>开发C#数据对比工具，支持模板化字段匹配与误码分析，减少团队重复验证工作量约70%</li>
+                            <li>构建跨平台C++动态链接库，封装底层通信细节，通过CI/CD实现Windows/Linux双环境自动化测试</li>
                         </ul>
                     </div>
                 </div>
@@ -1112,28 +647,16 @@
                     <div class="timeline-card">
                         <div class="timeline-header">
                             <div>
-                                <div class="timeline-role">🎛️ 嵌入式开发工程师</div>
+                                <div class="timeline-role">嵌入式开发工程师（硬件/软件）</div>
                                 <div class="timeline-company">某电动工具公司</div>
                             </div>
-                            <div class="timeline-date">2023 – 2024</div>
+                            <div class="timeline-date">2023.11 – 2024.05</div>
                         </div>
                         <ul class="timeline-achievements">
-                            <li data-emoji="🤖 ">独立完成原理图、PCB Layout及STM32固件开发，推动3款产品量产</li>
-                            <li data-emoji="🥇 ">设计软硬件保护机制，产品故障率降低20%，年出货超2000台</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-card">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-role">🎓 电子信息工程 本科</div>
-                                <div class="timeline-company">某大学</div>
-                            </div>
-                            <div class="timeline-date">2020 – 2024</div>
-                        </div>
-                        <ul class="timeline-achievements">
-                            <li data-emoji="📚 ">主修：计算机系统、编译原理、数据结构、嵌入式系统设计</li>
+                            <li>负责电动剪刀、链锯等产品的嵌入式开发：原理图设计、PCB Layout、元器件选型、STM32/STM8固件编写及整机调试</li>
+                            <li>基于STM32实现剪刀开闭口PWM控制，通过VOFA+调试工具完成反馈调参，实现平稳动作与堵转保护</li>
+                            <li>设计软硬件保护机制（过流/过温/堵转检测），产品故障率降低20%，年出货超5万台，返修率＜0.5%</li>
+                            <li>独立完成从样板焊接、驱动调试到产线导入全流程，推动3款产品量产</li>
                         </ul>
                     </div>
                 </div>
@@ -1144,101 +667,200 @@
 
         <!-- 核心项目 -->
         <section class="content-section" aria-labelledby="projects-heading">
-            <div class="section-title" id="projects-heading">
-                <span>PROJECTS</span>
-            </div>
+            <h2 class="section-title" id="projects-heading">PROJECTS</h2>
             <div class="projects-grid">
                 <div class="project-item">
-                    <div class="project-name">⚡ 高可靠PCIE通信系统</div>
+                    <div class="project-header">
+                        <div class="project-name">高可靠PCIE通信系统</div>
+                        <div class="project-role">主架构师</div>
+                    </div>
                     <div class="project-tech">
                         <span class="tech-badge">C++17</span>
                         <span class="tech-badge">Qt</span>
-                        <span class="tech-badge">DMA</span>
+                        <span class="tech-badge">PCIE DMA</span>
+                        <span class="tech-badge">多线程</span>
+                        <span class="tech-badge">设计模式</span>
                     </div>
-                    <div class="project-desc">四层解耦架构，环形缓冲区+生产者消费者模型，吞吐40Gbps，CPU占用降低32%</div>
+                    <ul class="project-achievements">
+                        <li>设计四层解耦架构（驱动抽象/数据缓存/业务处理/界面层），使用单例管理资源，模板方法处理数据流水线，支持8路板卡并发</li>
+                        <li>引入环形缓冲区+生产者消费者模型，消除多线程内存竞争，峰值吞吐40Gbps，CPU占用降低32%</li>
+                        <li>实现异常捕获与错误重传机制，系统7×24h稳定性测试通过</li>
+                    </ul>
                 </div>
                 <div class="project-item">
-                    <div class="project-name">🤖 智能电机控制器</div>
+                    <div class="project-header">
+                        <div class="project-name">电动剪刀控制器（PWM驱动）</div>
+                        <div class="project-role">独立开发</div>
+                    </div>
                     <div class="project-tech">
                         <span class="tech-badge">STM32</span>
-                        <span class="tech-badge">PID</span>
-                        <span class="tech-badge">Altium</span>
+                        <span class="tech-badge">Altium Designer</span>
+                        <span class="tech-badge">PWM</span>
+                        <span class="tech-badge">VOFA+调试</span>
                     </div>
-                    <div class="project-desc">硬件设计+固件，PWM调速与堵转保护，量产产品返修率＜0.5%</div>
+                    <ul class="project-achievements">
+                        <li>设计电机驱动板硬件电路（MOSFET、电流采样、电源管理）及STM32控制软件，实现剪刀开闭口PWM调速</li>
+                        <li>通过VOFA+波形工具完成PID参数整定，保证动作顺滑且堵转时及时保护</li>
+                        <li>集成过流/过温保护，产品已量产并应用于出口工具系列</li>
+                    </ul>
                 </div>
                 <div class="project-item">
-                    <div class="project-name">💡 跨平台流式处理库</div>
+                    <div class="project-header">
+                        <div class="project-name">跨平台流式处理库</div>
+                        <div class="project-role">核心贡献者</div>
+                    </div>
                     <div class="project-tech">
                         <span class="tech-badge">C++17</span>
                         <span class="tech-badge">迭代器模式</span>
                         <span class="tech-badge">内存池</span>
+                        <span class="tech-badge">CMake</span>
                     </div>
-                    <div class="project-desc">内存峰值降低40%，延迟下降50%，被3个产品组复用</div>
+                    <ul class="project-achievements">
+                        <li>基于迭代器模式设计流式数据解析库，支持GB级文件分块处理，内存峰值降低40%，延迟下降50%</li>
+                        <li>提供统一API，被3个产品组复用，累计节省开发人月约3人月</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <div class="section-separator">────────────────────────────────────────</div>
 
-        <!-- 技术栈 -->
+        <!-- 专业技能（分组展示） -->
         <section class="content-section" aria-labelledby="skills-heading">
-            <div class="section-title" id="skills-heading">
-                <span>SKILLS</span>
+            <h2 class="section-title" id="skills-heading">SKILLS</h2>
+            <div class="skill-group">
+                <div class="skill-group-label">编程语言</div>
+                <div class="skills-cloud">
+                    <span class="skill-tag">C/C++ (核心)</span>
+                    <span class="skill-tag">C# / .NET</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Rust (了解)</span>
+                </div>
             </div>
-            <div class="skills-cloud">
-                <span class="skill-tag">C/C++</span>
-                <span class="skill-tag">C# / .NET</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Rust</span>
-                <span class="skill-tag">Qt/QML</span>
-                <span class="skill-tag">WinForm/WPF</span>
-                <span class="skill-tag">STM32/ESP32</span>
-                <span class="skill-tag">FreeRTOS/UCOS</span>
-                <span class="skill-tag">PCIE/DMA</span>
-                <span class="skill-tag">UART/SPI/I2C</span>
-                <span class="skill-tag">多线程</span>
-                <span class="skill-tag">设计模式</span>
-                <span class="skill-tag">CMake/Git</span>
-                <span class="skill-tag">AD/立创EDA</span>
-                <span class="skill-tag">示波器/逻辑分析</span>
+            <div class="skill-group">
+                <div class="skill-group-label">框架与 UI</div>
+                <div class="skills-cloud">
+                    <span class="skill-tag">Qt / QML</span>
+                    <span class="skill-tag">WinForm / WPF</span>
+                </div>
             </div>
+            <div class="skill-group">
+                <div class="skill-group-label">嵌入式</div>
+                <div class="skills-cloud">
+                    <span class="skill-tag">STM32/STM8</span>
+                    <span class="skill-tag">FreeRTOS / UCOS</span>
+                    <span class="skill-tag">UART/SPI/I2C/CAN</span>
+                    <span class="skill-tag">BLDC基础 (PWM控制)</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-label">架构与工具</div>
+                <div class="skills-cloud">
+                    <span class="skill-tag">多线程架构</span>
+                    <span class="skill-tag">设计模式/状态机</span>
+                    <span class="skill-tag">CMake / Make</span>
+                    <span class="skill-tag">Git / SVN</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-label">硬件调试</div>
+                <div class="skills-cloud">
+                    <span class="skill-tag">Altium Designer</span>
+                    <span class="skill-tag">示波器/电流钳</span>
+                    <span class="skill-tag">PCB Layout</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator">────────────────────────────────────────</div>
+
+        <!-- 教育背景 -->
+        <section class="content-section" aria-labelledby="education-heading">
+            <h2 class="section-title" id="education-heading">EDUCATION</h2>
+            <div class="education-card">
+                <div class="education-header">
+                    <div class="education-degree">电子信息工程 本科</div>
+                    <div class="education-date">2020 – 2024</div>
+                </div>
+                <div class="education-desc">主修：计算机系统、编译原理、数据结构、信号处理等</div>
+            </div>
+        </section>
+
+        <div class="section-separator">────────────────────────────────────────</div>
+
+        <!-- 技术亮点 -->
+        <section class="content-section" aria-labelledby="highlights-heading">
+            <h2 class="section-title" id="highlights-heading">HIGHLIGHTS</h2>
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <div class="highlight-icon">🏗️</div>
+                    <div class="highlight-text">从驱动到上位机的全栈开发能力（PCIE/电机/传感器 → Qt/C# 系统）</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">⚡</div>
+                    <div class="highlight-text">10倍级性能优化经验（4Gbps→40Gbps DMA重构）</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🧩</div>
+                    <div class="highlight-text">设计模式与可扩展架构实践者（分层抽象、插件化工具）</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🔧</div>
+                    <div class="highlight-text">量产级硬件调试经验：原理图/PCB设计 + 示波器调测 + 故障闭环分析</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator">────────────────────────────────────────</div>
+
+        <!-- 职业目标 -->
+        <section class="content-section" aria-labelledby="career-heading">
+            <h2 class="section-title" id="career-heading">OBJECTIVE</h2>
+            <div class="career-box">
+                <p>🎯 寻求嵌入式软件/工业控制软件开发岗位，发挥软硬件协同设计优势，致力于构建高可靠、可扩展的智能系统。</p>
+                <p>未来希望深入工业通信协议与边缘计算方向，持续提升系统架构能力。</p>
+            </div>
+        </section>
+
+        <div class="section-separator">────────────────────────────────────────</div>
+
+        <!-- 自我驱动 -->
+        <section class="content-section" aria-labelledby="drive-heading">
+            <h2 class="section-title" id="drive-heading">DRIVEN BY</h2>
+            <ul class="drive-list">
+                <li data-emoji="📚">持续学习：整理设计模式笔记，探索现代C++特性在嵌入式项目的应用</li>
+                <li data-emoji="✍️">技术沉淀：维护个人技术文档库，涵盖驱动调试案例与性能优化总结</li>
+                <li data-emoji="🤝">工程规范：推动团队引入Git Flow及Code Review，提高代码交付质量</li>
+            </ul>
         </section>
 
         <div class="section-separator">────────────────────────────────────────</div>
 
         <!-- 联系我 -->
         <section class="content-section" aria-labelledby="contact-heading">
-            <div class="section-title" id="contact-heading">
-                <span>CONTACT</span>
-            </div>
+            <h2 class="section-title" id="contact-heading">CONTACT</h2>
             <p style="color: var(--text-secondary); margin-bottom: var(--space-4); font-size: var(--text-sm);">欢迎交流技术、项目合作或职业机会。</p>
-            <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
-                <a href="https://github.com/cyy24612" class="btn-soft" style="background: var(--bg-elevated); font-size: var(--text-sm);">
+            <div class="contact-actions">
+                <a href="https://github.com/CYY24612" class="btn-contact" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="#" class="btn-soft" style="background: var(--bg-elevated); font-size: var(--text-sm);"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://mail.qq.com/" class="btn-soft" style="background: var(--bg-elevated); font-size: var(--text-sm);" target="_blank" rel="noopener noreferrer">
+                <a href="https://mail.qq.com/" class="btn-contact" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-envelope"></i> 邮件
                 </a>
             </div>
         </section>
-
-        <div style="text-align: left; padding-top: var(--space-6); font-size: var(--text-xs); color: var(--text-muted);">
-            © 2025 Your Name · 琥珀色暗色主题 | 内容可自由编辑
-        </div>
     </main>
 </div>
 
 <script>
-    // 初始化粒子效果 - 使用琥珀色品牌色
     particlesJS("particles-js", {
         "particles": {
             "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#d4a017" },  /* 琥珀色 #d4a017 ≈ oklch(72% 0.14 75) */
+            "color": { "value": "#d4a017" },
             "shape": { "type": "circle" },
             "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.08 } },
             "size": { "value": 2, "random": true },
-            "line_linked": { "enable": true, "distance": 150, "color": "#e6b82e", "opacity": 0.2, "width": 1 },  /* 浅琥珀色 */
+            "line_linked": { "enable": true, "distance": 150, "color": "#e6b82e", "opacity": 0.2, "width": 1 },
             "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "out_mode": "out" }
         },
         "interactivity": {
@@ -1251,182 +873,136 @@
 </script>
 
 <script>
-    // 入场动画: 使用IntersectionObserver触发滚动动画
     document.addEventListener('DOMContentLoaded', () => {
-        // 侧边栏立即显示
         const sidebar = document.querySelector('.sidebar');
         if (sidebar) sidebar.classList.add('is-loaded');
 
-        // 检查是否启用减少动画
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
         if (!prefersReducedMotion) {
-            // 使用IntersectionObserver触发section入场
             const sections = document.querySelectorAll('.content-section');
-
             const sectionObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
+                entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('is-visible');
-                        }, index * 100);
+                        entry.target.classList.add('is-visible');
                         sectionObserver.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            sections.forEach(s => sectionObserver.observe(s));
 
-            sections.forEach(section => sectionObserver.observe(section));
-
-            // 观察时间轴项目(stagger延迟)
             const timelineItems = document.querySelectorAll('.timeline-item');
             const timelineObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        // 为每个时间轴项目添加stagger延迟
                         const items = Array.from(timelineItems);
-                        const itemIndex = items.indexOf(entry.target);
-                        setTimeout(() => {
-                            entry.target.classList.add('is-visible');
-                        }, itemIndex * 150);  // 150ms间隔
+                        setTimeout(() => entry.target.classList.add('is-visible'), items.indexOf(entry.target) * 150);
                         timelineObserver.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -30px 0px'
-            });
-
+            }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
             timelineItems.forEach(item => timelineObserver.observe(item));
         } else {
-            // 减少动画: 直接显示所有
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.add('is-visible');
+            document.querySelectorAll('.content-section, .timeline-item').forEach(el => el.classList.add('is-visible'));
+        }
+
+        /* ===== 极简进度指示器 Scroll Spy ===== */
+        const progressBar = document.getElementById('progressBar');
+        const navDots = document.querySelectorAll('.progress-nav-dot');
+        const sections = ['about', 'experience', 'projects', 'skills', 'contact'];
+        
+        // 进度条高度基于滚动位置
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            if (progressBar) {
+                progressBar.style.height = Math.max(20, progress) + '%';
+            }
+        }
+        
+        // 圆点高亮基于当前可见 section
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navDots.forEach(dot => {
+                        dot.classList.toggle('active', 
+                            dot.getAttribute('data-section') === id);
+                    });
+                }
             });
-            document.querySelectorAll('.timeline-item').forEach(item => {
-                item.classList.add('is-visible');
+        }, { 
+            threshold: 0.3,
+            rootMargin: '-80px 0px -60% 0px'
+        });
+        
+        sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) spyObserver.observe(section);
+        });
+        
+        // 点击圆点平滑滚动
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const sectionId = dot.getAttribute('data-section');
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
+        });
+        
+        if (progressBar) {
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
         }
     });
 </script>
 
 <script>
-    // ========================================
-    // 主题切换功能
-    // ========================================
     (function() {
         const root = document.documentElement;
         const toggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
-
-        // 更新按钮图标
-        function updateButtonIcon(theme) {
-            if (theme === 'light') {
-                themeIcon.className = 'fas fa-moon';
-            } else {
-                themeIcon.className = 'fas fa-sun';
-            }
-        }
-
-        // 切换主题
-        function toggleTheme() {
-            // 添加过渡动画类
+        function updateIcon(t) { themeIcon.className = t === 'light' ? 'fas fa-moon' : 'fas fa-sun'; }
+        function toggle() {
             document.body.classList.add('theme-transitioning');
-
             const isLight = root.classList.toggle('light-theme');
-            const theme = isLight ? 'light' : 'dark';
-
-            // 保存到localStorage
-            localStorage.setItem('theme', theme);
-
-            // 更新按钮图标
-            updateButtonIcon(theme);
-
-            // 移除过渡动画类(动画完成后)
-            setTimeout(() => {
-                document.body.classList.remove('theme-transitioning');
-            }, 350);
+            const t = isLight ? 'light' : 'dark';
+            localStorage.setItem('theme', t);
+            updateIcon(t);
+            setTimeout(() => document.body.classList.remove('theme-transitioning'), 350);
         }
-
-        // 页面加载时恢复主题
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-
-            // 如果没有保存的主题,检测系统偏好
-            if (!savedTheme) {
-                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-                if (prefersLight) {
-                    root.classList.add('light-theme');
-                    updateButtonIcon('light');
-                }
-            } else if (savedTheme === 'light') {
-                root.classList.add('light-theme');
-                updateButtonIcon('light');
+        function init() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                root.classList.add('light-theme'); updateIcon('light');
             }
         }
-
-        // 绑定事件
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', toggleTheme);
-        }
-
-        // 监听系统主题变化
+        if (toggleBtn) toggleBtn.addEventListener('click', toggle);
         window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
             if (!localStorage.getItem('theme')) {
-                if (e.matches) {
-                    root.classList.add('light-theme');
-                    updateButtonIcon('light');
-                } else {
-                    root.classList.remove('light-theme');
-                    updateButtonIcon('dark');
-                }
+                e.matches ? (root.classList.add('light-theme'), updateIcon('light')) : (root.classList.remove('light-theme'), updateIcon('dark'));
             }
         });
-
-        // 初始化
-        initTheme();
+        init();
     })();
 </script>
 
 <script>
-    // ========================================
-    // 鼠标视差背景 - brittanychiang风格
-    // 鼠标跟随聚光灯,使用CSS变量+damping
-    // ========================================
     (function() {
         const root = document.documentElement;
-        const EASING = 0.08;  /* 阻尼系数0.08,平滑跟随 */
-
-        let currentX = window.innerWidth / 2;
-        let currentY = window.innerHeight / 2;
-        let targetX = currentX;
-        let targetY = currentY;
-
-        // 检测减少动画偏好
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        document.addEventListener('mousemove', (e) => {
-            targetX = e.clientX;
-            targetY = e.clientY;
-        });
-
+        const EASING = 0.08;
+        let cx = window.innerWidth / 2, cy = window.innerHeight / 2, tx = cx, ty = cy;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        document.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; });
         function animate() {
-            // 线性插值平滑跟随
-            currentX += (targetX - currentX) * EASING;
-            currentY += (targetY - currentY) * EASING;
-
-            root.style.setProperty('--mouse-x', currentX + 'px');
-            root.style.setProperty('--mouse-y', currentY + 'px');
-
+            cx += (tx - cx) * EASING; cy += (ty - cy) * EASING;
+            root.style.setProperty('--mouse-x', cx + 'px');
+            root.style.setProperty('--mouse-y', cy + 'px');
             requestAnimationFrame(animate);
         }
-
-        // 如果用户偏好减少动画,禁用视差效果
-        if (!prefersReducedMotion) {
-            animate();
-        }
+        animate();
     })();
 </script>
 </body>
