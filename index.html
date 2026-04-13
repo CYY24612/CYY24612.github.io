@@ -313,64 +313,211 @@
             letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
         }
 
-        /* ===== 时间轴 ===== */
-        .timeline { position: relative; padding-left: var(--space-7); }
-        .timeline::before {
-            content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px;
-            background: linear-gradient(to bottom, transparent 0%, var(--accent) 5%, var(--accent) 95%, transparent 100%);
-            opacity: 0.3;
+        /* ===== 时间轴 - Sticky 布局 ===== */
+        .timeline-wrapper {
+            position: relative;
+            max-width: 100%;
+            padding: var(--space-5) 0;
         }
 
-        .timeline-item { position: relative; margin-bottom: var(--space-7); }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: calc(-1 * var(--space-7) + 5px); top: 12px;
-            width: 14px; height: 14px; border-radius: 50%; background: var(--bg-dark);
-            border: 3px solid var(--accent);
-            transition: all var(--duration-normal) var(--ease-out-quart); z-index: 1;
-        }
-        .timeline-item:hover::before { transform: scale(1.3); box-shadow: 0 0 0 4px oklch(72% 0.14 75 / 0.15); }
-
-        .timeline-card {
-            background: var(--bg-elevated); border-radius: var(--space-3);
-            padding: var(--space-5); border: 1px solid var(--border-subtle);
-            transition: all var(--duration-normal) var(--ease-out-quart);
-        }
-        .timeline-card:hover { border-color: oklch(72% 0.14 75 / 0.3); box-shadow: var(--shadow-sm); }
-
-        .timeline-header {
-            display: flex; justify-content: space-between; align-items: baseline;
-            flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-3);
-        }
-        .timeline-role {
-            font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg);
-            line-height: var(--leading-snug); color: var(--text-primary);
-        }
-        .timeline-company { color: var(--accent-glow); font-size: var(--text-sm); font-weight: 500; }
-        .timeline-date {
-            font-size: var(--text-xs); background: var(--info-subtle);
-            padding: var(--space-1) var(--space-3); border-radius: var(--space-5);
-            color: var(--info); font-weight: 500; white-space: nowrap;
+        /* 背景时间轴线 */
+        .timeline-axis {
+            position: absolute;
+            left: 32px;
+            top: 30px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent 0%, var(--border-subtle) 30%, var(--border-subtle) 70%, transparent);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
         }
 
-        .timeline-achievements { list-style: none; padding: 0; margin: 0; }
-        .timeline-achievements li {
-            margin-bottom: var(--space-2); font-size: var(--text-sm); font-weight: 400;
-            color: var(--text-secondary); position: relative; padding-left: var(--space-4);
-            line-height: var(--leading-relaxed);
-        }
-        .timeline-achievements li::before {
-            content: "▹"; position: absolute; left: 0; color: var(--accent);
+        /* 渐变进度条 */
+        .timeline-progress {
+            position: absolute;
+            left: 32px;
+            top: 40px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent 0%, var(--accent) 30%, var(--accent-hover) 70%, transparent 100%);
+            transition: height 0.15s ease-out;
+            border-radius: 1px;
         }
 
+        /* 时间轴项 - flex 布局 */
         .timeline-item {
-            opacity: 0; transform: translateX(12px);
+            display: flex;
+            justify-content: flex-start;
+            padding-top: var(--space-8);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
             transition: opacity var(--duration-enter) var(--ease-out-expo),
                         transform var(--duration-enter) var(--ease-out-expo);
         }
-        .timeline-item.is-visible { opacity: 1; transform: translateX(0); }
 
-        :root.light-theme .timeline::before { opacity: 0.2; }
+        .timeline-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 左侧 Sticky 容器 */
+        .timeline-sticky {
+            position: sticky;
+            top: 160px;
+            align-self: flex-start;
+            flex-shrink: 0;
+            width: 180px;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* 节点容器 */
+        .timeline-dot-wrapper {
+            position: absolute;
+            left: 9px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 节点圆点 */
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-elevated);
+            border: 10px solid var(--text-muted);
+            transition: transform var(--duration-normal) var(--ease-out-quart),
+                        box-shadow var(--duration-normal) var(--ease-out-quart);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 6px oklch(72% 0.14 75 / 0.1);
+        }
+
+        /* 时间文本 */
+        .timeline-date {
+            font-size: var(--text-sm);
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding-left: 80px;
+        }
+
+        /* 右侧内容区域 */
+        .timeline-content {
+            flex: 1;
+            padding-left: var(--space-6);
+            padding-right: var(--space-4);
+        }
+
+        .timeline-card {
+            background: var(--bg-elevated);
+            border-radius: var(--space-3);
+            padding: var(--space-5);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--duration-normal) var(--ease-out-quart);
+        }
+
+        .timeline-card:hover {
+            border-color: oklch(72% 0.14 75 / 0.3);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-role {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--text-lg);
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        .timeline-company {
+            color: var(--accent-glow);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-3);
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-achievements li {
+            margin-bottom: var(--space-2);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: var(--space-4);
+            line-height: var(--leading-relaxed);
+        }
+
+        .timeline-achievements li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .timeline-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .tech-badge {
+            background: var(--bg-elevated);
+            font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--space-2);
+            color: var(--text-secondary);
+            font-weight: 500;
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .timeline-sticky {
+                position: static;
+                width: auto;
+                margin-bottom: var(--space-3);
+            }
+            .timeline-dot-wrapper {
+                position: absolute;
+                left: 4px;
+                width: 36px;
+                height: 36px;
+            }
+            .timeline-dot {
+                width: 12px;
+                height: 12px;
+                border-width: 2px;
+            }
+            .timeline-date {
+                padding-left: 44px;
+            }
+            .timeline-item {
+                flex-direction: column;
+                position: relative;
+            }
+            .timeline-content {
+                padding-left: var(--space-5);
+            }
+            .timeline-axis,
+            .timeline-progress {
+                left: 20px;
+            }
+        }
+
+        :root.light-theme .timeline-axis { opacity: 0.6; }
         :root.light-theme .timeline-item::before { background: var(--bg-elevated); }
 
         /* ===== 项目展示 ===== */
@@ -625,39 +772,60 @@
         <!-- 工作经验 -->
         <section class="content-section" aria-labelledby="experience-heading">
             <h2 class="section-title" id="experience-heading">EXPERIENCE</h2>
-            <div class="timeline">
+            <div class="timeline-wrapper">
+                <div class="timeline-axis"></div>
+                <div class="timeline-progress" id="timelineProgress"></div>
+
                 <div class="timeline-item">
-                    <div class="timeline-card">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-role">嵌入式软件工程师</div>
-                                <div class="timeline-company">某军工科技企业</div>
-                            </div>
-                            <div class="timeline-date">2024.06 – 至今</div>
+                    <div class="timeline-sticky">
+                        <div class="timeline-dot-wrapper">
+                            <div class="timeline-dot"></div>
                         </div>
-                        <ul class="timeline-achievements">
-                            <li>主导基于Qt/C++的PCIE板卡通信上位机开发，设计分层架构（驱动抽象层/数据缓存层/业务层），实现多板卡高速数据收发与实时监控</li>
-                            <li>重构PCIE驱动数据通路，通过DMA双缓冲与中断合并策略，吞吐量从4Gbps提升至40Gbps，长时间运行无丢包</li>
-                            <li>开发C#数据对比工具，支持模板化字段匹配与误码分析，减少团队重复验证工作量约70%</li>
-                            <li>构建跨平台C++动态链接库，封装底层通信细节，通过CI/CD实现Windows/Linux双环境自动化测试</li>
-                        </ul>
+                        <div class="timeline-date">2024.06 – 至今</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-card">
+                            <div class="timeline-role">嵌入式软件工程师</div>
+                            <div class="timeline-company">某军工科技企业</div>
+                            <ul class="timeline-achievements">
+                                <li>主导基于Qt/C++的PCIE板卡通信上位机开发，设计分层架构（驱动抽象层/数据缓存层/业务层）</li>
+                                <li>重构PCIE驱动数据通路，通过DMA双缓冲与中断合并策略，吞吐量从4Gbps提升至40Gbps</li>
+                                <li>开发C#数据对比工具，减少团队重复验证工作量约70%</li>
+                                <li>构建跨平台C++动态链接库，实现Windows/Linux双环境自动化测试</li>
+                            </ul>
+                            <div class="timeline-tech">
+                                <span class="tech-badge">C++</span>
+                                <span class="tech-badge">Qt</span>
+                                <span class="tech-badge">XBMD/XDMA</span>
+                                <span class="tech-badge">C#</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="timeline-item">
-                    <div class="timeline-card">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-role">嵌入式开发工程师（硬件/软件）</div>
-                                <div class="timeline-company">某电动工具公司</div>
-                            </div>
-                            <div class="timeline-date">2023.11 – 2024.05</div>
+                    <div class="timeline-sticky">
+                        <div class="timeline-dot-wrapper">
+                            <div class="timeline-dot"></div>
                         </div>
-                        <ul class="timeline-achievements">
-                            <li>负责电动剪刀、链锯等产品的嵌入式开发：原理图设计、PCB Layout、元器件选型、STM32/STM8固件编写及整机调试</li>
-                            <li>基于STM32实现剪刀开闭口PWM控制，通过VOFA+调试工具完成反馈调参，实现平稳动作与堵转保护</li>
-                            <li>设计软硬件保护机制（过流/过温/堵转检测），产品故障率降低20%，年出货超5万台，返修率＜0.5%</li>
-                            <li>独立完成从样板焊接、驱动调试到产线导入全流程，推动3款产品量产</li>
-                        </ul>
+                        <div class="timeline-date">2023.11 – 2024.05</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-card">
+                            <div class="timeline-role">嵌入式开发工程师（硬件/软件）</div>
+                            <div class="timeline-company">某电动工具公司</div>
+                            <ul class="timeline-achievements">
+                                <li>负责电动剪刀、链锯等产品的嵌入式开发全流程：原理图设计、PCB Layout、固件编写</li>
+                                <li>基于STM32实现剪刀开闭口PWM控制，通过VOFA+完成反馈调参</li>
+                                <li>设计软硬件保护机制（过流/过温/堵转检测），产品故障率降低20%</li>
+                                <li>推动3款产品量产，年出货超5万台，返修率＜0.5%</li>
+                            </ul>
+                            <div class="timeline-tech">
+                                <span class="tech-badge">STM8/STM32</span>
+                                <span class="tech-badge">Altium Designer</span>
+                                <span class="tech-badge">PWM</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -955,6 +1123,25 @@
         if (progressBar) {
             window.addEventListener('scroll', updateProgress, { passive: true });
             updateProgress();
+        }
+
+        /* ===== 时间轴进度条 ===== */
+        const tlProgressBar = document.getElementById('timelineProgress');
+        const timelineWrapper = document.querySelector('.timeline-wrapper');
+        if (tlProgressBar && timelineWrapper) {
+            function updateTimelineProgress() {
+                const rect = timelineWrapper.getBoundingClientRect();
+                const timelineHeight = timelineWrapper.offsetHeight;
+                const windowHeight = window.innerHeight;
+                let progress = 0;
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const scrolled = windowHeight - rect.top;
+                    progress = Math.min(Math.max(scrolled / (timelineHeight + windowHeight * 0.5) * 100, 0), 100);
+                }
+                tlProgressBar.style.height = progress + '%';
+            }
+            window.addEventListener('scroll', updateTimelineProgress, { passive: true });
+            updateTimelineProgress();
         }
     });
 </script>
