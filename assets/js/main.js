@@ -294,6 +294,51 @@ function initMouseFollow() {
 }
 
 // ============================================
+// 7. 微信二维码弹窗
+// ============================================
+function initWechatModal() {
+    const trigger = document.getElementById('wechatContact');
+    const modal = document.getElementById('wechatModal');
+    const closeBtn = document.getElementById('modalClose');
+
+    if (!trigger || !modal) return;
+
+    function openModal() {
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        trigger.focus();
+    }
+
+    trigger.addEventListener('click', openModal);
+    trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal();
+        }
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModal();
+        }
+    });
+}
+
+// ============================================
 // 主初始化函数
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -306,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTimelineProgress();
     initThemeSwitcher();
     initMouseFollow();
+    initWechatModal();
 
     console.log('✅ Portfolio initialized successfully');
 });

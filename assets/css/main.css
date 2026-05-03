@@ -895,3 +895,121 @@
 
         a { text-decoration: none; }
         ::selection { background: var(--accent); color: var(--text-inverse); }
+
+        /* ===== 微信联系项 ===== */
+        .contact-wechat {
+            cursor: pointer;
+            transition: color var(--duration-normal) var(--ease-out-quart),
+                        transform var(--duration-normal) var(--ease-out-quart);
+        }
+        .contact-wechat:hover {
+            color: var(--accent-glow);
+            transform: translateX(4px);
+        }
+        .contact-wechat i.fa-weixin {
+            color: #07c160;
+            font-size: 1.1em;
+        }
+
+        /* ===== 微信二维码弹窗 ===== */
+        .modal-overlay {
+            display: flex;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: oklch(0% 0 0 / 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--duration-slow) var(--ease-out-quart),
+                        visibility var(--duration-slow) var(--ease-out-quart);
+        }
+        .modal-overlay.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-elevated);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--space-4);
+            padding: var(--space-6);
+            max-width: 320px;
+            width: 90%;
+            position: relative;
+            box-shadow: var(--shadow-lg), var(--shadow-glow-strong);
+            transform: scale(0.9) translateY(20px);
+            transition: transform var(--duration-slow) var(--ease-out-expo);
+        }
+        .modal-overlay.is-open .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--space-3);
+            right: var(--space-3);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--glass-bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--duration-normal) var(--ease-out-quart);
+        }
+        .modal-close:hover {
+            background: oklch(72% 0.16 75 / 0.2);
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .modal-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #07c160;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 0 20px #07c16033;
+        }
+
+        .modal-label {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--text-lg);
+            color: var(--text-primary);
+        }
+
+        .modal-qr {
+            width: 200px;
+            height: auto;
+            max-height: 320px;
+            object-fit: contain;
+            border-radius: var(--space-3);
+            background: #fff;
+            padding: 8px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal-hint {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            text-align: center;
+        }
