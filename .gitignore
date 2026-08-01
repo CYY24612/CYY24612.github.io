@@ -348,3 +348,10 @@ healthchecksdb
 # 构建产物(由 npm run build 生成,CI 中构建后部署)
 assets/css/main.min.css
 assets/js/main.min.js
+
+# 博客构建产物(由 npm run build 生成)
+blog/blog.css
+blog/index.html
+blog/index.json
+blog/rss.xml
+blog/*/index.html

@@ -6,9 +6,12 @@
   "scripts": {
     "build:css": "esbuild assets/css/main.css --minify --outfile=assets/css/main.min.css",
     "build:js": "esbuild assets/js/main.js --bundle --minify --outfile=assets/js/main.min.js",
-    "build": "npm run build:css && npm run build:js"
+    "build:blog": "node scripts/build-blog.js",
+    "build": "npm run build:css && npm run build:js && npm run build:blog"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0"
+    "esbuild": "^0.25.0",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^15.0.0"
   }
 }

@@ -138,9 +138,10 @@ function initAnimations() {
 function initScrollSpy() {
     const progressBar = document.getElementById('progressBar');
     const navDots = document.querySelectorAll('.progress-nav-dot');
-    const sections = ['about', 'experience', 'projects', 'skills', 'contact'];
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    const sections = ['about', 'experience', 'projects', 'skills', 'blog', 'contact'];
 
-    // 更新进度条高度
+    // 更新整体进度条高度
     function updateProgress() {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -151,7 +152,25 @@ function initScrollSpy() {
         }
     }
 
-    // 导航点高亮
+    // 更新各区块阅读进度(侧边栏目录迷你进度线)
+    function updateSectionProgress() {
+        const vh = window.innerHeight;
+        sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            const link = document.querySelector('.sidebar-nav a[href="#' + sectionId + '"]');
+            if (!section || !link) return;
+
+            const rect = section.getBoundingClientRect();
+            let progress = 0;
+            if (rect.bottom > 0 && rect.top < vh) {
+                const visible = Math.min(vh, rect.bottom) - Math.max(0, rect.top);
+                progress = Math.min(Math.max((visible / vh) * 100, 0), 100);
+            }
+            link.style.setProperty('--sec-progress', progress + '%');
+        });
+    }
+
+    // 当前区块高亮(进度点 + 侧边栏目录)
     const spyObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -159,6 +178,10 @@ function initScrollSpy() {
                 navDots.forEach(dot => {
                     dot.classList.toggle('active',
                         dot.getAttribute('data-section') === id);
+                });
+                sidebarLinks.forEach(link => {
+                    link.classList.toggle('active',
+                        link.getAttribute('href') === '#' + id);
                 });
             }
         });
@@ -186,10 +209,25 @@ function initScrollSpy() {
         });
     });
 
-    if (progressBar) {
-        window.addEventListener('scroll', updateProgress, { passive: true });
-        updateProgress();
-    }
+    // 点击侧边栏目录滚动(preventDefault 避免锚点污染 URL)
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const sectionId = link.getAttribute('href').slice(1);
+            const target = document.getElementById(sectionId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('scroll', updateSectionProgress, { passive: true });
+    updateProgress();
+    updateSectionProgress();
 }
 
 // ============================================
@@ -342,6 +380,41 @@ function initWechatModal() {
 }
 
 // ============================================
+// 8. 首页最新文章预览(fetch blog/index.json)
+// ============================================
+function initBlogPreview() {
+    const container = document.getElementById('latestPosts');
+    if (!container) return;
+
+    fetch('blog/index.json')
+        .then(res => {
+            if (!res.ok) throw new Error('blog index not found');
+            return res.json();
+        })
+        .then(data => {
+            const posts = (data.posts || []).slice(0, 3);
+            if (!posts.length) throw new Error('no posts');
+            container.innerHTML = posts.map(post => `
+                <a class="blog-preview-item" href="${post.url}">
+                    <div class="blog-preview-main">
+                        <span class="blog-preview-title">${escapeHtml(post.title)}</span>
+                        ${post.summary ? `<span class="blog-preview-summary">${escapeHtml(post.summary)}</span>` : ''}
+                    </div>
+                    <time class="blog-preview-date" datetime="${post.date}">${escapeHtml(post.date)}</time>
+                </a>`).join('');
+        })
+        .catch(() => {
+            container.innerHTML = '<p class="blog-preview-loading">博客内容加载失败,<a href="/blog/">点此直接访问 →</a></p>';
+        });
+
+    function escapeHtml(s) {
+        return String(s)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+}
+
+// ============================================
 // 主初始化函数
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -353,4 +426,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeSwitcher();
     initMouseFollow();
     initWechatModal();
+    initBlogPreview();
 });

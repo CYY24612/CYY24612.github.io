@@ -53,6 +53,7 @@
     <div class="progress-nav-dot" data-section="projects" aria-label="项目"></div>
     <div class="progress-nav-dot" data-section="skills" aria-label="技能"></div>
     <div class="progress-nav-dot" data-section="contact" aria-label="联系"></div>
+    <div class="progress-nav-dot" data-section="blog" aria-label="博客"></div>
 </div>
 
 <div class="parallax-bg"></div>
@@ -86,7 +87,18 @@
             <a href="https://github.com/CYY24612" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-github"></i>
             </a>
+            <a href="/blog/" aria-label="博客" rel="noopener noreferrer">
+                <i class="fas fa-pen-nib"></i>
+            </a>
         </div>
+        <nav class="sidebar-nav" aria-label="页面目录">
+            <a href="#about">关于</a>
+            <a href="#experience">经验</a>
+            <a href="#projects">项目</a>
+            <a href="#skills">技能</a>
+            <a href="#blog">博客</a>
+            <a href="#contact">联系</a>
+        </nav>
         <button class="theme-toggle" id="theme-toggle" aria-label="切换亮暗主题">
             <i class="fas fa-sun" id="theme-icon"></i> 切换主题
         </button>
@@ -95,7 +107,7 @@
     <!-- 主内容 -->
     <main class="main-content" id="main-content" role="main" aria-label="主要内容">
         <!-- 关于我 -->
-        <section class="content-section" aria-labelledby="about-heading">
+        <section class="content-section" id="about" aria-labelledby="about-heading">
             <h2 class="section-title" id="about-heading">ABOUT ME</h2>
             <p class="section-lead">
                 构建高可靠、可扩展的智能系统，软硬件协同设计与性能优化。拥有从硬件底层到应用层的全栈视野，热衷于解决复杂系统问题。
@@ -105,7 +117,7 @@
         <div class="section-separator" aria-hidden="true"></div>
 
         <!-- 工作经验 -->
-        <section class="content-section" aria-labelledby="experience-heading">
+        <section class="content-section" id="experience" aria-labelledby="experience-heading">
             <h2 class="section-title" id="experience-heading">EXPERIENCE</h2>
             <div class="timeline-wrapper">
                 <div class="timeline-axis"></div>
@@ -169,7 +181,7 @@
         <div class="section-separator" aria-hidden="true"></div>
 
         <!-- 核心项目 -->
-        <section class="content-section" aria-labelledby="projects-heading">
+        <section class="content-section" id="projects" aria-labelledby="projects-heading">
             <h2 class="section-title" id="projects-heading">PROJECTS</h2>
             <div class="projects-grid">
                 <div class="project-item">
@@ -229,7 +241,7 @@
         <div class="section-separator" aria-hidden="true"></div>
 
         <!-- 专业技能（分组展示） -->
-        <section class="content-section" aria-labelledby="skills-heading">
+        <section class="content-section" id="skills" aria-labelledby="skills-heading">
             <h2 class="section-title" id="skills-heading">SKILLS</h2>
             <div class="skill-group">
                 <div class="skill-group-label">编程语言</div>
@@ -277,71 +289,20 @@
 
         <div class="section-separator" aria-hidden="true"></div>
 
-        <!-- 教育背景 -->
-        <section class="content-section" aria-labelledby="education-heading">
-            <h2 class="section-title" id="education-heading">EDUCATION</h2>
-            <div class="education-card">
-                <div class="education-header">
-                    <div class="education-degree">电子信息工程 本科</div>
-                    <div class="education-date">2020 – 2024</div>
-                </div>
-                <div class="education-desc">主修：计算机系统、编译原理、数据结构、信号处理等</div>
-                <div class="education-desc">成果：电赛省一</div>
+        <!-- 技术博客 -->
+        <section class="content-section" id="blog" aria-labelledby="blog-heading">
+            <h2 class="section-title" id="blog-heading">BLOG</h2>
+            <p class="section-lead">技术笔记与工程思考:总线协议、调试方法论与架构实践,持续更新。</p>
+            <div class="blog-preview" id="latestPosts">
+                <p class="blog-preview-loading">加载中…</p>
             </div>
-        </section>
-
-        <div class="section-separator" aria-hidden="true"></div>
-
-        <!-- 技术亮点 -->
-        <section class="content-section" aria-labelledby="highlights-heading">
-            <h2 class="section-title" id="highlights-heading">HIGHLIGHTS</h2>
-            <div class="highlights-grid">
-                <div class="highlight-item">
-                    <div class="highlight-icon">🏗️</div>
-                    <div class="highlight-text">从驱动到上位机的全栈开发能力（PCIE/电机/传感器 → Qt/C# 系统）</div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon">⚡</div>
-                    <div class="highlight-text">10倍级性能优化经验（4Gbps→40Gbps DMA重构）</div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon">🧩</div>
-                    <div class="highlight-text">设计模式与可扩展架构实践者（分层抽象、插件化工具）</div>
-                </div>
-                <div class="highlight-item">
-                    <div class="highlight-icon">🔧</div>
-                    <div class="highlight-text">量产级硬件调试经验：原理图/PCB设计 + 示波器调测 + 故障闭环分析</div>
-                </div>
-            </div>
-        </section>
-
-        <div class="section-separator" aria-hidden="true"></div>
-
-        <!-- 职业目标 -->
-        <section class="content-section" aria-labelledby="career-heading">
-            <h2 class="section-title" id="career-heading">OBJECTIVE</h2>
-            <div class="career-box">
-                <p>🎯 寻求嵌入式软件/工业控制软件开发岗位，发挥软硬件协同设计优势，致力于构建高可靠、可扩展的智能系统。</p>
-                <p>未来希望深入工业通信协议与边缘计算方向，持续提升系统架构能力。</p>
-            </div>
-        </section>
-
-        <div class="section-separator" aria-hidden="true"></div>
-
-        <!-- 自我驱动 -->
-        <section class="content-section" aria-labelledby="drive-heading">
-            <h2 class="section-title" id="drive-heading">DRIVEN BY</h2>
-            <ul class="drive-list">
-                <li data-emoji="📚">持续学习：整理设计模式笔记，探索现代C++特性在嵌入式项目的应用</li>
-                <li data-emoji="✍️">技术沉淀：维护个人技术文档库，涵盖驱动调试案例与性能优化总结</li>
-                <li data-emoji="🤝">工程规范：推动团队引入Git Flow及Code Review，提高代码交付质量</li>
-            </ul>
+            <a class="btn-contact btn-contact-blog" href="/blog/">查看全部文章 →</a>
         </section>
 
         <div class="section-separator" aria-hidden="true"></div>
 
         <!-- 联系我 -->
-        <section class="content-section" aria-labelledby="contact-heading">
+        <section class="content-section" id="contact" aria-labelledby="contact-heading">
             <h2 class="section-title" id="contact-heading">CONTACT</h2>
             <p class="section-lead contact-lead">欢迎交流技术、项目合作或职业机会。</p>
             <div class="contact-actions">
@@ -353,6 +314,57 @@
                 </a>
             </div>
         </section>
+
+        <div class="section-separator" aria-hidden="true"></div>
+
+        <!-- 更多信息(默认折叠,点击展开) -->
+        <details class="more-block" id="more">
+            <summary>更多信息:教育背景 · 技术亮点 · 职业目标 · 自我驱动</summary>
+            <div class="more-content">
+                <h3 class="more-title">教育背景 EDUCATION</h3>
+                <div class="education-card">
+                    <div class="education-header">
+                        <div class="education-degree">电子信息工程 本科</div>
+                        <div class="education-date">2020 – 2024</div>
+                    </div>
+                    <div class="education-desc">主修：计算机系统、编译原理、数据结构、信号处理等</div>
+                    <div class="education-desc">成果：电赛省一</div>
+                </div>
+
+                <h3 class="more-title">技术亮点 HIGHLIGHTS</h3>
+                <div class="highlights-grid">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🏗️</div>
+                        <div class="highlight-text">从驱动到上位机的全栈开发能力（PCIE/电机/传感器 → Qt/C# 系统）</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">⚡</div>
+                        <div class="highlight-text">10倍级性能优化经验（4Gbps→40Gbps DMA重构）</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🧩</div>
+                        <div class="highlight-text">设计模式与可扩展架构实践者（分层抽象、插件化工具）</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🔧</div>
+                        <div class="highlight-text">量产级硬件调试经验：原理图/PCB设计 + 示波器调测 + 故障闭环分析</div>
+                    </div>
+                </div>
+
+                <h3 class="more-title">职业目标 OBJECTIVE</h3>
+                <div class="career-box">
+                    <p>🎯 寻求嵌入式软件/工业控制软件开发岗位，发挥软硬件协同设计优势，致力于构建高可靠、可扩展的智能系统。</p>
+                    <p>未来希望深入工业通信协议与边缘计算方向，持续提升系统架构能力。</p>
+                </div>
+
+                <h3 class="more-title">自我驱动 DRIVEN BY</h3>
+                <ul class="drive-list">
+                    <li data-emoji="📚">持续学习：整理设计模式笔记，探索现代C++特性在嵌入式项目的应用</li>
+                    <li data-emoji="✍️">技术沉淀：维护个人技术文档库，涵盖驱动调试案例与性能优化总结</li>
+                    <li data-emoji="🤝">工程规范：推动团队引入Git Flow及Code Review，提高代码交付质量</li>
+                </ul>
+            </div>
+        </details>
     </main>
 </div>
 
