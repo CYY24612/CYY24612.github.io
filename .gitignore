@@ -344,3 +344,7 @@ healthchecksdb
 /src/Decompress.Channels.G05Tests/20_RSCodeTest - 复制.cs
 /src/G05/G05.Server/data/20240626112253
 /src/G05/G05.Server/data/20240628183821/20240628
+
+# 构建产物(由 npm run build 生成,CI 中构建后部署)
+assets/css/main.min.css
+assets/js/main.min.js

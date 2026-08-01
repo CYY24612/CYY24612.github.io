@@ -16,9 +16,19 @@
 
 - HTML5 / CSS3
 - JavaScript (ES6)
-- Particles.js (粒子背景)
+- Particles.js (粒子背景,本地化)
 - Font Awesome 6 (图标库)
+- esbuild (CSS/JS 压缩构建)
 - GitHub Pages (托管)
+
+## 🔨 本地构建
+
+构建产物(`assets/css/main.min.css`、`assets/js/main.min.js`)由源码压缩生成,已在 CI 中自动构建,**不需要提交产物到仓库**:
+
+```bash
+npm install    # 首次安装依赖
+npm run build  # 生成压缩产物,供本地预览
+```
 
 ---
 <br>
@@ -26,7 +36,7 @@
 # 个人网站搭建流程
 ## 创建仓库
 登录 GitHub，新建一个以 `cyy24612.github.io` 为名的公开仓库
-，cyy26312替换为自己的GitHub用户名
+，cyy24612替换为自己的GitHub用户名
 
 ## 编写个人网站
 将新建的仓库克隆到本地，增加 index.html 文件，这个文件内为网站的内容

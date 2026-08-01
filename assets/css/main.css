@@ -404,9 +404,10 @@
         .content-section:last-child { margin-bottom: 0; }
 
         .section-separator {
-            color: var(--text-muted); font-family: 'Courier New', monospace;
-            font-size: var(--text-sm); margin: var(--space-7) 0; opacity: 0.5;
-            user-select: none; overflow: hidden; white-space: nowrap;
+            height: 1px;
+            margin: var(--space-7) 0;
+            border: none;
+            background: linear-gradient(90deg, transparent, var(--border-default), transparent);
         }
 
         .section-title {
@@ -421,6 +422,16 @@
             border-radius: 2px; transition: width var(--duration-slow) var(--ease-out-quart);
         }
         .section-title:hover::after { width: 80px; }
+
+        .section-lead {
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+            max-width: 65ch;
+        }
+        .contact-lead {
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-4);
+        }
 
         /* ===== 时间轴 - Sticky 布局 ===== */
         .timeline-wrapper {

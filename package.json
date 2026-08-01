@@ -1,0 +1,14 @@
+{
+  "name": "cyy24612.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CYY - 嵌入式软件工程师个人作品集",
+  "scripts": {
+    "build:css": "esbuild assets/css/main.css --minify --outfile=assets/css/main.min.css",
+    "build:js": "esbuild assets/js/main.js --bundle --minify --outfile=assets/js/main.min.js",
+    "build": "npm run build:css && npm run build:js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}
