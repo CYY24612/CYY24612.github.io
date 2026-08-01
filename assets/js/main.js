@@ -7,10 +7,13 @@
 // 1. 粒子效果初始化
 // ============================================
 function initParticles() {
+    // 移动端减少粒子数量,降低性能开销
+    const particleCount = window.innerWidth < 768 ? 30 : 60;
+
     particlesJS("particles-js", {
         "particles": {
             "number": {
-                "value": 60,
+                "value": particleCount,
                 "density": {
                     "enable": true,
                     "value_area": 800
@@ -342,8 +345,6 @@ function initWechatModal() {
 // 主初始化函数
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 CYY Portfolio Initializing...');
-
     // 按顺序初始化各模块
     initParticles();
     initAnimations();
@@ -352,6 +353,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeSwitcher();
     initMouseFollow();
     initWechatModal();
-
-    console.log('✅ Portfolio initialized successfully');
 });
