@@ -75,7 +75,7 @@ const posts = fs.existsSync(POSTS_DIR)
     : [];
 
 /* ---------- 页面骨架 ---------- */
-function head(cssHref, title) {
+function head(cssHref, title, canonicalPath = '/blog/') {
     const pageTitle = title || `${BLOG_TITLE} · ${BLOG_DESC}`;
     return `<!DOCTYPE html>
 <html lang="zh-CN">
@@ -84,7 +84,7 @@ function head(cssHref, title) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${pageTitle}</title>
     <meta name="description" content="${BLOG_DESC}">
-    <link rel="canonical" href="${SITE_URL}/blog/">
+    <link rel="canonical" href="${SITE_URL}${canonicalPath}">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,6 +96,7 @@ function head(cssHref, title) {
         <a class="brand" href="/blog/">${BLOG_TITLE}</a>
         <span class="brand-sub">${BLOG_DESC}</span>
         <nav class="site-nav">
+            <a href="/blog/tags/">标签</a>
             <a href="/">作品集</a>
         </nav>
     </header>
@@ -107,10 +108,24 @@ const footer = `
     <footer class="site-footer">
         <a href="/blog/">博客首页</a>
         <span>·</span>
+        <a href="/blog/tags/">标签</a>
+        <span>·</span>
         <a href="/">返回作品集</a>
         <span>·</span>
         <a href="/blog/rss.xml">RSS</a>
     </footer>
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script>
+    window.addEventListener('load', function () {
+        var show = function () {
+            var v = document.getElementById('busuanzi_value_page_pv');
+            var c = document.getElementById('busuanzi_container_page_pv');
+            if (v && c && parseInt(v.textContent, 10) > 0) { c.style.display = ''; }
+        };
+        setTimeout(show, 1000);
+        setTimeout(show, 3000);
+    });
+    </script>
 </body>
 </html>`;
 
@@ -118,8 +133,8 @@ function escapeHtml(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-function tagBadges(tags, base = '/blog/') {
-    return tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('');
+function tagBadges(tags) {
+    return tags.map(t => `<a class="tag" href="/blog/tags/#tag-${encodeURIComponent(t)}">${escapeHtml(t)}</a>`).join('');
 }
 
 function formatDate(date) {
@@ -140,6 +155,7 @@ function renderPost(post, prev, next) {
                 <div class="post-meta">
                     <time datetime="${post.date}">${formatDate(post.date)}</time>
                     ${tagBadges(post.tags)}
+                    <span id="busuanzi_container_page_pv" class="post-pv" style="display:none">阅读 <span id="busuanzi_value_page_pv"></span> 次</span>
                 </div>
             </header>
             <div class="post-body">
@@ -154,16 +170,16 @@ ${html}
 /* ---------- 列表页 ---------- */
 function renderIndex() {
     const items = posts.map(p => `
-        <a class="post-item" href="/blog/${p.slug}/">
+        <article class="post-item">
             <div class="post-item-main">
-                <h2 class="post-item-title">${escapeHtml(p.title)}</h2>
+                <h2 class="post-item-title"><a href="/blog/${p.slug}/">${escapeHtml(p.title)}</a></h2>
                 ${p.summary ? `<p class="post-item-summary">${escapeHtml(p.summary)}</p>` : ''}
             </div>
             <div class="post-item-side">
                 <time datetime="${p.date}">${formatDate(p.date)}</time>
                 ${tagBadges(p.tags)}
             </div>
-        </a>`).join('\n');
+        </article>`).join('\n');
 
     const body = `
         <section class="post-list">
@@ -171,6 +187,45 @@ function renderIndex() {
         </section>`;
 
     return head('/blog/blog.css') + body + footer;
+}
+
+/* ---------- 标签归档页 ---------- */
+function renderTags() {
+    const tagMap = {};
+    posts.forEach(p => p.tags.forEach(t => {
+        (tagMap[t] = tagMap[t] || []).push(p);
+    }));
+
+    const tagNames = Object.keys(tagMap).sort((a, b) => tagMap[b].length - tagMap[a].length);
+
+    const cloud = tagNames.map(t => `
+        <a class="tag tag-cloud-item" href="#tag-${encodeURIComponent(t)}">${escapeHtml(t)} <span class="tag-count">${tagMap[t].length}</span></a>`).join('\n');
+
+    const sections = tagNames.map(t => `
+        <section class="tag-section" id="tag-${encodeURIComponent(t)}">
+            <h2 class="tag-section-title">${escapeHtml(t)} <span class="tag-count">${tagMap[t].length} 篇</span></h2>
+            <div class="post-list">
+                ${tagMap[t].map(p => `
+                <article class="post-item">
+                    <div class="post-item-main">
+                        <h3 class="post-item-title"><a href="/blog/${p.slug}/">${escapeHtml(p.title)}</a></h3>
+                        ${p.summary ? `<p class="post-item-summary">${escapeHtml(p.summary)}</p>` : ''}
+                    </div>
+                    <div class="post-item-side">
+                        <time datetime="${p.date}">${formatDate(p.date)}</time>
+                        ${tagBadges(p.tags)}
+                    </div>
+                </article>`).join('\n')}
+            </div>
+        </section>`).join('\n');
+
+    const body = `
+        <div class="tag-cloud">
+            ${cloud || '<p class="empty">暂无标签。</p>'}
+        </div>
+        ${sections}`;
+
+    return head('/blog/blog.css', `${BLOG_TITLE} · 标签归档`, '/blog/tags/') + body + footer;
 }
 
 /* ---------- RSS ---------- */
@@ -203,25 +258,33 @@ function renderCss() {
         path.join(ROOT, 'node_modules', 'highlight.js', 'styles', 'github-dark.css'), 'utf8');
     const custom = `
 :root {
-    --bg: #14161f;
-    --bg-elevated: #1a1d2e;
-    --text-primary: #f2f4fc;
-    --text-secondary: #b8bfd4;
-    --text-muted: #7a8299;
-    --accent: #d4a017;
-    --border: rgba(255,255,255,0.08);
-    --code-bg: #0f1119;
+    --bg: oklch(17% 0.02 250);
+    --bg-elevated: oklch(21% 0.022 250);
+    --bg-hover: oklch(24.5% 0.024 250);
+    --text-primary: oklch(95% 0.008 250);
+    --text-secondary: oklch(75% 0.02 250);
+    --text-muted: oklch(58% 0.02 250);
+    --accent: oklch(80% 0.13 85);
+    --accent-soft: color-mix(in oklab, oklch(80% 0.13 85) 60%, transparent);
+    --accent-border: color-mix(in oklab, oklch(80% 0.13 85) 35%, transparent);
+    --border: oklch(90% 0.02 250 / 0.08);
+    --border-strong: oklch(90% 0.02 250 / 0.15);
+    --code-bg: oklch(13% 0.015 250);
 }
 @media (prefers-color-scheme: light) {
     :root {
-        --bg: #f7f7f5;
-        --bg-elevated: #ffffff;
-        --text-primary: #23262f;
-        --text-secondary: #4a4f5c;
-        --text-muted: #8a8f9c;
-        --accent: #b8860b;
-        --border: rgba(0,0,0,0.1);
-        --code-bg: #f2f3f6;
+        --bg: oklch(98.2% 0.004 250);
+        --bg-elevated: oklch(100% 0 0);
+        --bg-hover: oklch(95.5% 0.007 250);
+        --text-primary: oklch(26% 0.03 250);
+        --text-secondary: oklch(45% 0.025 250);
+        --text-muted: oklch(62% 0.02 250);
+        --accent: oklch(52% 0.115 80);
+        --accent-soft: color-mix(in oklab, oklch(52% 0.115 80) 60%, transparent);
+        --accent-border: color-mix(in oklab, oklch(52% 0.115 80) 32%, transparent);
+        --border: oklch(50% 0.02 250 / 0.12);
+        --border-strong: oklch(50% 0.02 250 / 0.22);
+        --code-bg: oklch(94% 0.006 250);
     }
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -236,29 +299,40 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     max-width: 860px;
     margin: 0 auto;
-    padding: 48px 24px 24px;
+    padding: 0 24px;
+    height: 60px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 8px 16px;
+    align-items: center;
+    gap: 16px;
+    background: color-mix(in oklab, var(--bg) 82%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
 }
 .brand {
     font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
+.brand::after { content: '.'; color: var(--accent); }
 .brand:hover { text-decoration: none; }
-.brand-sub { color: var(--text-muted); font-size: 0.875rem; }
+.brand-sub { color: var(--text-muted); font-size: 0.8rem; }
 .site-nav { margin-left: auto; }
+.site-nav a { color: var(--text-secondary); font-size: 0.9rem; transition: color 200ms; }
+.site-nav a:hover { color: var(--accent); text-decoration: none; }
 
 .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
 .site-footer {
     max-width: 860px;
     margin: 0 auto;
-    padding: 48px 24px;
+    padding: 40px 24px;
     color: var(--text-muted);
     font-size: 0.875rem;
     display: flex;
@@ -266,37 +340,71 @@ a:hover { text-decoration: underline; }
 }
 
 /* ---- 列表页 ---- */
-.post-list { display: flex; flex-direction: column; gap: 12px; padding-top: 12px; }
+.post-list { display: flex; flex-direction: column; gap: 12px; padding-top: 24px; }
 .post-item {
     display: flex;
     justify-content: space-between;
     gap: 16px;
-    padding: 20px 8px;
-    border-bottom: 1px solid var(--border);
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-elevated);
     color: var(--text-primary);
+    transition: border-color 200ms, transform 350ms;
 }
-.post-item:hover { background: var(--bg-elevated); text-decoration: none; border-radius: 8px; }
+.post-item:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-2px);
+    background: var(--bg-elevated);
+    text-decoration: none;
+}
 .post-item-main { min-width: 0; }
-.post-item-title { font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif; font-size: 1.15rem; font-weight: 700; }
-.post-item:hover .post-item-title { color: var(--accent); }
+.post-item-title { font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif; font-size: 1.1rem; font-weight: 700; }
+.post-item-title a { color: inherit; text-decoration: none; }
+.post-item-title a:hover { color: var(--accent); text-decoration: none; }
+.post-item:hover .post-item-title a { color: var(--accent); }
 .post-item-summary { color: var(--text-secondary); font-size: 0.9rem; margin-top: 4px; }
 .post-item-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
-.post-item-side time { color: var(--text-muted); font-size: 0.85rem; white-space: nowrap; }
+.post-item-side time { color: var(--text-muted); font-size: 0.85rem; white-space: nowrap; font-family: 'Cascadia Code', Consolas, monospace; }
 .empty { color: var(--text-muted); padding: 40px 0; text-align: center; }
 
 /* ---- 标签 ---- */
 .tag {
     display: inline-block;
-    font-size: 0.75rem;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 4px;
+    font-family: 'Cascadia Code', Consolas, monospace;
+    font-size: 0.72rem;
+    color: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    border-radius: 6px;
     padding: 1px 8px;
     line-height: 1.5;
 }
+a.tag:hover {
+    color: var(--accent);
+    background: var(--accent-border);
+    text-decoration: none;
+}
+
+/* ---- 标签归档页 ---- */
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; padding: 32px 0 8px; }
+.tag-cloud-item { padding: 4px 12px; font-size: 0.8rem; border-radius: 999px; }
+.tag-count { opacity: 0.7; }
+.tag-section { padding: 40px 0 8px; }
+.tag-section-title {
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+    font-size: 1.35rem;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+.tag-section .post-list { padding-top: 0; }
+
+/* ---- 文章阅读量 ---- */
+.post-pv { font-size: 0.8rem; }
 
 /* ---- 文章页 ---- */
-.post { padding: 12px 0 24px; }
+.post { padding: 24px 0; }
 .post-header { padding-bottom: 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
 .post-title {
     font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
@@ -306,6 +414,7 @@ a:hover { text-decoration: underline; }
     margin-bottom: 12px;
 }
 .post-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--text-muted); font-size: 0.875rem; }
+.post-meta time { font-family: 'Cascadia Code', Consolas, monospace; font-size: 0.8rem; }
 
 .post-body { max-width: 720px; font-size: 1rem; }
 .post-body h1, .post-body h2, .post-body h3, .post-body h4 {
@@ -362,9 +471,11 @@ a:hover { text-decoration: underline; }
 }
 
 @media (max-width: 640px) {
+    .site-header { padding: 0 16px; gap: 8px; }
+    .brand-sub { display: none; }
     .post-item { flex-direction: column; gap: 6px; }
     .post-item-side { flex-direction: row; align-items: center; }
-    .site-nav { margin-left: 0; width: 100%; }
+    .site-nav { margin-left: auto; width: auto; }
 }`;
     return `${hljsTheme}\n${custom}`;
 }
@@ -382,8 +493,10 @@ function build() {
         fs.writeFileSync(path.join(dir, 'index.html'), renderPost(post, prev, next));
     });
 
-    // 列表页 / JSON / RSS
+    // 列表页 / 标签页 / JSON / RSS
     fs.writeFileSync(path.join(OUT_DIR, 'index.html'), renderIndex());
+    fs.mkdirSync(path.join(OUT_DIR, 'tags'), { recursive: true });
+    fs.writeFileSync(path.join(OUT_DIR, 'tags', 'index.html'), renderTags());
     fs.writeFileSync(path.join(OUT_DIR, 'index.json'),
         JSON.stringify({ posts: posts.map(p => ({
             slug: p.slug, title: p.title, date: p.date,
