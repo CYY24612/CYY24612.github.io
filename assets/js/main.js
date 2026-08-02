@@ -1,264 +1,10 @@
 /**
- * CYY Portfolio - Main JavaScript
- * 模块化组织，提高可维护性
+ * CYY Portfolio - Main JavaScript (v2)
+ * 模块化组织: 主题切换 / 滚动进度与导航高亮 / 移动端菜单 / 博客卡片 / 微信弹窗
  */
 
 // ============================================
-// 1. 粒子效果初始化
-// ============================================
-function initParticles() {
-    // 移动端减少粒子数量,降低性能开销
-    const particleCount = window.innerWidth < 768 ? 30 : 60;
-
-    particlesJS("particles-js", {
-        "particles": {
-            "number": {
-                "value": particleCount,
-                "density": {
-                    "enable": true,
-                    "value_area": 800
-                }
-            },
-            "color": {
-                "value": "#d4a017"
-            },
-            "shape": {
-                "type": "circle"
-            },
-            "opacity": {
-                "value": 0.3,
-                "random": true,
-                "anim": {
-                    "enable": true,
-                    "speed": 1,
-                    "opacity_min": 0.08
-                }
-            },
-            "size": {
-                "value": 2,
-                "random": true
-            },
-            "line_linked": {
-                "enable": true,
-                "distance": 150,
-                "color": "#e6b82e",
-                "opacity": 0.2,
-                "width": 1
-            },
-            "move": {
-                "enable": true,
-                "speed": 1,
-                "direction": "none",
-                "random": true,
-                "out_mode": "out"
-            }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-                "onhover": {
-                    "enable": true,
-                    "mode": "grab"
-                },
-                "onclick": {
-                    "enable": true,
-                    "mode": "push"
-                },
-                "resize": true
-            },
-            "modes": {
-                "grab": {
-                    "distance": 150,
-                    "line_linked": {
-                        "opacity": 0.4
-                    }
-                },
-                "push": {
-                    "particles_nb": 3
-                }
-            }
-        },
-        "retina_detect": true
-    });
-}
-
-// ============================================
-// 2. 动画和滚动效果
-// ============================================
-function initAnimations() {
-    const sidebar = document.querySelector('.sidebar');
-    if (sidebar) sidebar.classList.add('is-loaded');
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!prefersReducedMotion) {
-        // 内容区域渐入动画
-        const sections = document.querySelectorAll('.content-section');
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    sectionObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        sections.forEach(s => sectionObserver.observe(s));
-
-        // 时间轴项目动画
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const items = Array.from(timelineItems);
-                    setTimeout(() => entry.target.classList.add('is-visible'),
-                             items.indexOf(entry.target) * 150);
-                    timelineObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -30px 0px'
-        });
-
-        timelineItems.forEach(item => timelineObserver.observe(item));
-    } else {
-        // 如果用户偏好减少动画，直接显示所有元素
-        document.querySelectorAll('.content-section, .timeline-item')
-            .forEach(el => el.classList.add('is-visible'));
-    }
-}
-
-// ============================================
-// 3. 进度指示器和导航
-// ============================================
-function initScrollSpy() {
-    const progressBar = document.getElementById('progressBar');
-    const navDots = document.querySelectorAll('.progress-nav-dot');
-    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
-    const sections = ['about', 'experience', 'projects', 'skills', 'blog', 'contact'];
-
-    // 更新整体进度条高度
-    function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-
-        if (progressBar) {
-            progressBar.style.height = Math.max(20, progress) + '%';
-        }
-    }
-
-    // 更新各区块阅读进度(侧边栏目录迷你进度线)
-    function updateSectionProgress() {
-        const vh = window.innerHeight;
-        sections.forEach(sectionId => {
-            const section = document.getElementById(sectionId);
-            const link = document.querySelector('.sidebar-nav a[href="#' + sectionId + '"]');
-            if (!section || !link) return;
-
-            const rect = section.getBoundingClientRect();
-            let progress = 0;
-            if (rect.bottom > 0 && rect.top < vh) {
-                const visible = Math.min(vh, rect.bottom) - Math.max(0, rect.top);
-                progress = Math.min(Math.max((visible / vh) * 100, 0), 100);
-            }
-            link.style.setProperty('--sec-progress', progress + '%');
-        });
-    }
-
-    // 当前区块高亮(进度点 + 侧边栏目录)
-    const spyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navDots.forEach(dot => {
-                    dot.classList.toggle('active',
-                        dot.getAttribute('data-section') === id);
-                });
-                sidebarLinks.forEach(link => {
-                    link.classList.toggle('active',
-                        link.getAttribute('href') === '#' + id);
-                });
-            }
-        });
-    }, {
-        threshold: 0.3,
-        rootMargin: '-80px 0px -60% 0px'
-    });
-
-    sections.forEach(sectionId => {
-        const section = document.getElementById(sectionId);
-        if (section) spyObserver.observe(section);
-    });
-
-    // 点击导航点滚动
-    navDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            const sectionId = dot.getAttribute('data-section');
-            const target = document.getElementById(sectionId);
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // 点击侧边栏目录滚动(preventDefault 避免锚点污染 URL)
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const sectionId = link.getAttribute('href').slice(1);
-            const target = document.getElementById(sectionId);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    window.addEventListener('scroll', updateSectionProgress, { passive: true });
-    updateProgress();
-    updateSectionProgress();
-}
-
-// ============================================
-// 4. 时间轴进度条
-// ============================================
-function initTimelineProgress() {
-    const tlProgressBar = document.getElementById('timelineProgress');
-    const timelineWrapper = document.querySelector('.timeline-wrapper');
-
-    if (tlProgressBar && timelineWrapper) {
-        function updateTimelineProgress() {
-            const rect = timelineWrapper.getBoundingClientRect();
-            const timelineHeight = timelineWrapper.offsetHeight;
-            const windowHeight = window.innerHeight;
-            let progress = 0;
-
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                const scrolled = windowHeight - rect.top;
-                progress = Math.min(Math.max(scrolled / (timelineHeight + windowHeight * 0.5) * 100, 0), 100);
-            }
-
-            tlProgressBar.style.height = progress + '%';
-        }
-
-        window.addEventListener('scroll', updateTimelineProgress, { passive: true });
-        updateTimelineProgress();
-    }
-}
-
-// ============================================
-// 5. 主题切换功能
+// 1. 主题切换
 // ============================================
 function initThemeSwitcher() {
     const root = document.documentElement;
@@ -270,12 +16,10 @@ function initThemeSwitcher() {
     }
 
     function toggleTheme() {
-        document.body.classList.add('theme-transitioning');
         const isLight = root.classList.toggle('light-theme');
         const theme = isLight ? 'light' : 'dark';
         localStorage.setItem('theme', theme);
         updateIcon(theme);
-        setTimeout(() => document.body.classList.remove('theme-transitioning'), 350);
     }
 
     function initTheme() {
@@ -306,36 +50,142 @@ function initThemeSwitcher() {
 }
 
 // ============================================
-// 6. 鼠标跟随效果
+// 2. 顶部滚动进度条 + 导航滚动高亮
 // ============================================
-function initMouseFollow() {
-    const root = document.documentElement;
-    const EASING = 0.08;
-    let cx = window.innerWidth / 2;
-    let cy = window.innerHeight / 2;
-    let tx = cx;
-    let ty = cy;
+function initScrollSpy() {
+    const progressBar = document.getElementById('progressBar');
+    const navLinks = document.querySelectorAll('.nav-links .nav-link');
+    const sections = ['blog', 'experience', 'projects', 'skills', 'contact'];
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    document.addEventListener('mousemove', (e) => {
-        tx = e.clientX;
-        ty = e.clientY;
-    });
-
-    function animate() {
-        cx += (tx - cx) * EASING;
-        cy += (ty - cy) * EASING;
-        root.style.setProperty('--mouse-x', cx + 'px');
-        root.style.setProperty('--mouse-y', cy + 'px');
-        requestAnimationFrame(animate);
+    // 页面滚动进度
+    function updateProgress() {
+        if (!progressBar) return;
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = progress + '%';
     }
 
-    animate();
+    // 当前区块高亮
+    const spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.toggle('active',
+                        link.getAttribute('href') === '#' + id);
+                });
+            }
+        });
+    }, {
+        threshold: 0.25,
+        rootMargin: '-40% 0px -55% 0px'
+    });
+
+    sections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) spyObserver.observe(section);
+    });
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
 }
 
 // ============================================
-// 7. 微信二维码弹窗
+// 3. 移动端汉堡菜单
+// ============================================
+function initNavBurger() {
+    const burger = document.getElementById('navBurger');
+    const nav = document.getElementById('siteNav');
+    if (!burger || !nav) return;
+
+    burger.addEventListener('click', () => {
+        const open = nav.classList.toggle('nav-open');
+        burger.setAttribute('aria-expanded', String(open));
+    });
+
+    // 点击链接后自动收起菜单
+    nav.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('nav-open');
+            burger.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // 点击导航外区域收起
+    document.addEventListener('click', (e) => {
+        if (nav.classList.contains('nav-open') && !nav.contains(e.target)) {
+            nav.classList.remove('nav-open');
+            burger.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
+
+// ============================================
+// 4. 内容区渐入动画
+// ============================================
+function initAnimations() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sections = document.querySelectorAll('.content-section');
+
+    if (prefersReducedMotion) {
+        sections.forEach(s => s.classList.add('is-visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    sections.forEach(s => observer.observe(s));
+}
+
+// ============================================
+// 5. 首页博客卡片(fetch blog/index.json)
+// ============================================
+function initBlogPreview() {
+    const container = document.getElementById('latestPosts');
+    if (!container) return;
+
+    fetch('blog/index.json')
+        .then(res => {
+            if (!res.ok) throw new Error('blog index not found');
+            return res.json();
+        })
+        .then(data => {
+            const posts = (data.posts || []).slice(0, 6);
+            if (!posts.length) throw new Error('no posts');
+            container.innerHTML = posts.map(post => `
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <time class="blog-date" datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+                        <span class="blog-tags">${(post.tags || []).slice(0, 3).map(t => `<a class="blog-tag" href="/blog/tags/#tag-${encodeURIComponent(t)}">${escapeHtml(t)}</a>`).join('')}</span>
+                    </div>
+                    <h3 class="blog-title"><a href="${post.url}">${escapeHtml(post.title)}</a></h3>
+                    ${post.summary ? `<p class="blog-summary">${escapeHtml(post.summary)}</p>` : ''}
+                </article>`).join('');
+        })
+        .catch(() => {
+            container.innerHTML = '<p class="blog-loading">博客内容加载失败，<a href="/blog/" style="color:var(--accent)">点此直接访问 →</a></p>';
+        });
+
+    function escapeHtml(s) {
+        return String(s)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+}
+
+// ============================================
+// 6. 微信二维码弹窗
 // ============================================
 function initWechatModal() {
     const trigger = document.getElementById('wechatContact');
@@ -380,51 +230,22 @@ function initWechatModal() {
 }
 
 // ============================================
-// 8. 首页最新文章预览(fetch blog/index.json)
+// 7. 页脚年份
 // ============================================
-function initBlogPreview() {
-    const container = document.getElementById('latestPosts');
-    if (!container) return;
-
-    fetch('blog/index.json')
-        .then(res => {
-            if (!res.ok) throw new Error('blog index not found');
-            return res.json();
-        })
-        .then(data => {
-            const posts = (data.posts || []).slice(0, 3);
-            if (!posts.length) throw new Error('no posts');
-            container.innerHTML = posts.map(post => `
-                <a class="blog-preview-item" href="${post.url}">
-                    <div class="blog-preview-main">
-                        <span class="blog-preview-title">${escapeHtml(post.title)}</span>
-                        ${post.summary ? `<span class="blog-preview-summary">${escapeHtml(post.summary)}</span>` : ''}
-                    </div>
-                    <time class="blog-preview-date" datetime="${post.date}">${escapeHtml(post.date)}</time>
-                </a>`).join('');
-        })
-        .catch(() => {
-            container.innerHTML = '<p class="blog-preview-loading">博客内容加载失败,<a href="/blog/">点此直接访问 →</a></p>';
-        });
-
-    function escapeHtml(s) {
-        return String(s)
-            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-    }
+function initFooterYear() {
+    const el = document.getElementById('year');
+    if (el) el.textContent = String(new Date().getFullYear());
 }
 
 // ============================================
-// 主初始化函数
+// 主初始化
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    // 按顺序初始化各模块
-    initParticles();
-    initAnimations();
-    initScrollSpy();
-    initTimelineProgress();
     initThemeSwitcher();
-    initMouseFollow();
-    initWechatModal();
+    initScrollSpy();
+    initNavBurger();
+    initAnimations();
     initBlogPreview();
+    initWechatModal();
+    initFooterYear();
 });
