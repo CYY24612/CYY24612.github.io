@@ -98,7 +98,8 @@ function head(cssHref, title, canonicalPath = '/blog/') {
         <span class="brand-sub">${BLOG_DESC}</span>
         <nav class="site-nav">
             <a href="/blog/tags/">标签</a>
-            <a href="/">作品集</a>
+            <a href="/">主页</a>
+            <a href="/about/">关于我</a>
         </nav>
     </header>
     <main class="container">`;
@@ -111,7 +112,9 @@ const footer = `
         <span>·</span>
         <a href="/blog/tags/">标签</a>
         <span>·</span>
-        <a href="/">返回作品集</a>
+        <a href="/">主页</a>
+        <span>·</span>
+        <a href="/about/">关于我</a>
         <span>·</span>
         <a href="/blog/rss.xml">RSS</a>
     </footer>

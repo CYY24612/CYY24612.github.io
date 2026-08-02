@@ -55,7 +55,7 @@ function initThemeSwitcher() {
 function initScrollSpy() {
     const progressBar = document.getElementById('progressBar');
     const navLinks = document.querySelectorAll('.nav-links .nav-link');
-    const sections = ['blog', 'experience', 'projects', 'skills', 'contact'];
+    const sections = ['latest', 'intro', 'experience', 'projects', 'skills', 'highlights', 'contact'];
 
     // 页面滚动进度
     function updateProgress() {
@@ -92,7 +92,93 @@ function initScrollSpy() {
 }
 
 // ============================================
-// 3. 移动端汉堡菜单
+// 3. 加载入场动画
+// ============================================
+function initSplash() {
+    const splash = document.getElementById('siteSplash');
+    if (!splash) {
+        document.body.classList.add('is-loaded');
+        return;
+    }
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+        splash.style.display = 'none';
+        document.body.classList.add('is-loaded');
+        return;
+    }
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            splash.classList.add('is-animating');
+            setTimeout(() => {
+                splash.classList.add('is-done');
+                document.body.classList.add('is-loaded');
+                document.body.style.overflow = '';
+            }, 850);
+        });
+    });
+}
+
+// ============================================
+// 3.5 全屏氛围光(鼠标跟随, 无界)
+// ============================================
+function initHeroGlow() {
+    const glow = document.getElementById('pageGlow');
+    if (!glow) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return; // 触屏不跟随
+
+    let tx = 0.5, ty = 0.5, cx = 0.5, cy = 0.5, raf = null;
+
+    const tick = () => {
+        cx += (tx - cx) * 0.06;
+        cy += (ty - cy) * 0.06;
+        glow.style.transform = 'translate(calc(-50% + ' + ((cx - 0.5) * 36) + 'vw), calc(-50% + ' + ((cy - 0.5) * 36) + 'vh))';
+        raf = null;
+    };
+
+    document.addEventListener('mousemove', (e) => {
+        tx = e.clientX / window.innerWidth;
+        ty = e.clientY / window.innerHeight;
+        if (!raf) raf = requestAnimationFrame(tick);
+    });
+}
+
+// ============================================
+// 3.6 数字滚动动画
+// ============================================
+function initCountUp() {
+    const els = document.querySelectorAll('[data-count]');
+    if (!els.length) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(el => { el.textContent = el.dataset.count; });
+        return;
+    }
+
+    const animate = (el) => {
+        const target = parseInt(el.dataset.count, 10) || 0;
+        const dur = 1200;
+        const start = performance.now();
+        const tick = (now) => {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * eased);
+            if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.5 });
+
+    els.forEach(el => io.observe(el));
+}
+
+// ============================================
+// 4. 移动端汉堡菜单
 // ============================================
 function initNavBurger() {
     const burger = document.getElementById('navBurger');
@@ -161,7 +247,7 @@ function initBlogPreview() {
             return res.json();
         })
         .then(data => {
-            const posts = (data.posts || []).slice(0, 6);
+            const posts = (data.posts || []).slice(0, 3);
             if (!posts.length) throw new Error('no posts');
             container.innerHTML = posts.map(post => `
                 <article class="blog-card">
@@ -243,6 +329,9 @@ function initFooterYear() {
 document.addEventListener('DOMContentLoaded', () => {
     initThemeSwitcher();
     initScrollSpy();
+    initSplash();
+    initHeroGlow();
+    initCountUp();
     initNavBurger();
     initAnimations();
     initBlogPreview();

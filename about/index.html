@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CYY - 嵌入式软件工程师：个人介绍、经验、项目与技能">
+    <meta name="keywords" content="嵌入式软件,系统架构,C++,STM32,PCIE,通信系统,边缘计算">
+    <meta name="author" content="CYY">
+    <meta name="theme-color" content="#0e1117">
+    <meta property="og:title" content="CYY | 关于我">
+    <meta property="og:description" content="嵌入式软件工程师/系统架构师 - 软硬件协同设计、高性能通信系统">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://cyy24612.github.io/assets/og-cover.png">
+    <link rel="canonical" href="https://cyy24612.github.io/about/">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <title>CYY | 关于我</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <link rel="stylesheet" href="/assets/css/main.min.css">
+    <script src="/assets/js/main.min.js" defer></script>
+
+</head>
+<body>
+<a href="#main-content" class="skip-link">跳转到主内容</a>
+
+<!-- 顶部滚动进度条 -->
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="progressBar"></div></div>
+
+<!-- 顶部导航 -->
+<header class="site-nav" id="siteNav">
+    <a class="brand" href="/">CYY<span class="brand-dot">.</span></a>
+    <nav class="nav-links" id="navLinks" aria-label="页面导航">
+        <a class="nav-link" href="#experience">经验</a>
+        <a class="nav-link" href="#projects">项目</a>
+        <a class="nav-link" href="#skills">技能</a>
+        <a class="nav-link" href="#highlights">亮点</a>
+        <a class="nav-link" href="#contact">联系</a>
+    </nav>
+    <div class="nav-actions">
+        <a class="nav-icon" href="/" aria-label="主页" title="主页">
+            <i class="fas fa-home"></i>
+        </a>
+        <a class="nav-icon" href="/blog/" aria-label="博客" title="博客">
+            <i class="fas fa-pen-nib"></i>
+        </a>
+        <a class="nav-icon" href="https://github.com/CYY24612" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="切换亮暗主题">
+            <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
+        <button class="nav-burger" id="navBurger" aria-label="展开菜单" aria-expanded="false" aria-controls="navLinks">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<div class="page">
+    <main class="main-content" id="main-content" role="main" aria-label="主要内容">
+
+        <!-- 个人介绍 -->
+        <section class="content-section intro-section" id="intro">
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <p class="hero-kicker"><span class="kicker-prompt">$</span> whoami</p>
+                    <h1 class="intro-name">CYY</h1>
+                    <p class="hero-role">嵌入式软件工程师 · 软硬件协同设计 · 高性能通信系统</p>
+                    <p class="hero-desc">构建高可靠、可扩展的智能系统，拥有从硬件底层到应用层的全栈视野，热衷解决复杂系统问题。</p>
+                </div>
+                <div class="intro-aside">
+                    <div class="hero-avatar">
+                        <img src="/headCoin.png" alt="CYY 的个人头像" width="150" height="150">
+                    </div>
+                    <ul class="hero-stats intro-stats">
+                        <li class="stat"><span class="stat-num"><span data-count="40">0</span>Gbps</span><span class="stat-label">PCIE DMA 峰值吞吐</span></li>
+                        <li class="stat"><span class="stat-num"><span data-count="5">0</span>W+</span><span class="stat-label">产品年出货量</span></li>
+                        <li class="stat"><span class="stat-num"><span data-count="10">0</span>×</span><span class="stat-label">数据通路性能提升</span></li>
+                        <li class="stat"><span class="stat-num"><span data-count="14">0</span>+</span><span class="stat-label">技术笔记</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工作经验 + 技能面板 -->
+        <section class="content-section" id="experience">
+            <div class="section-head">
+                <span class="section-index">01</span>
+                <h2 class="section-title">经验</h2>
+                <span class="section-en">EXPERIENCE</span>
+            </div>
+            <div class="two-col">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-meta">
+                                <time class="timeline-date">2024.06 – 至今</time>
+                                <span class="timeline-company">某军工科技企业</span>
+                            </div>
+                            <div class="timeline-role">嵌入式软件工程师</div>
+                            <ul class="timeline-achievements">
+                                <li>主导基于Qt/C++的PCIE板卡通信上位机开发，设计分层架构（驱动抽象层/数据缓存层/业务层）</li>
+                                <li>重构PCIE驱动数据通路，通过DMA双缓冲与中断合并策略，吞吐量从4Gbps提升至40Gbps</li>
+                                <li>开发C#数据对比工具，减少团队重复验证工作量约70%</li>
+                                <li>构建跨平台C++动态链接库，实现Windows/Linux双环境自动化测试</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">Qt</span>
+                                <span class="tech-tag">XBMD/XDMA</span>
+                                <span class="tech-tag">C#</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-meta">
+                                <time class="timeline-date">2023.11 – 2024.05</time>
+                                <span class="timeline-company">某电动工具公司</span>
+                            </div>
+                            <div class="timeline-role">嵌入式开发工程师（硬件/软件）</div>
+                            <ul class="timeline-achievements">
+                                <li>负责电动剪刀、链锯等产品的嵌入式开发全流程：原理图设计、PCB Layout、固件编写</li>
+                                <li>基于STM32实现剪刀开闭口PWM控制，通过VOFA+完成反馈调参</li>
+                                <li>设计软硬件保护机制（过流/过温/堵转检测），产品故障率降低20%</li>
+                                <li>推动3款产品量产，年出货超5万台，返修率＜0.5%</li>
+                            </ul>
+                            <div class="tech-tags">
+                                <span class="tech-tag">STM8/STM32</span>
+                                <span class="tech-tag">Altium Designer</span>
+                                <span class="tech-tag">PWM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-meta">
+                                <time class="timeline-date">2020 – 2024</time>
+                                <span class="timeline-company">教育背景</span>
+                            </div>
+                            <div class="timeline-role">电子信息工程 · 本科</div>
+                            <ul class="timeline-achievements">
+                                <li>主修：计算机系统、编译原理、数据结构、信号处理等</li>
+                                <li>全国大学生电子设计竞赛 省一等奖</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="side-panel" id="skills" aria-label="专业技能">
+                    <div class="panel-card">
+                        <h3 class="panel-title">编程语言 <span class="panel-en">LANG</span></h3>
+                        <div class="skills-cloud">
+                            <span class="skill-tag">C/C++</span>
+                            <span class="skill-tag">C# / .NET</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Rust</span>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <h3 class="panel-title">框架与 UI <span class="panel-en">FRAMEWORK</span></h3>
+                        <div class="skills-cloud">
+                            <span class="skill-tag">Qt / QML</span>
+                            <span class="skill-tag">WinForm / WPF</span>
+                            <span class="skill-tag">OpenGL</span>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <h3 class="panel-title">嵌入式 <span class="panel-en">EMBEDDED</span></h3>
+                        <div class="skills-cloud">
+                            <span class="skill-tag">STM32/STM8</span>
+                            <span class="skill-tag">FreeRTOS / UCOS</span>
+                            <span class="skill-tag">UART/SPI/I2C/CAN</span>
+                            <span class="skill-tag">BLDC</span>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <h3 class="panel-title">架构与工具 <span class="panel-en">ARCH</span></h3>
+                        <div class="skills-cloud">
+                            <span class="skill-tag">多线程架构</span>
+                            <span class="skill-tag">设计模式/状态机</span>
+                            <span class="skill-tag">CMake / Make</span>
+                            <span class="skill-tag">Git / SVN</span>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <h3 class="panel-title">硬件调试 <span class="panel-en">HW DEBUG</span></h3>
+                        <div class="skills-cloud">
+                            <span class="skill-tag">Altium Designer</span>
+                            <span class="skill-tag">示波器</span>
+                            <span class="skill-tag">信号发生器</span>
+                            <span class="skill-tag">PCB Layout</span>
+                        </div>
+                    </div>
+                    <div class="panel-card">
+                        <h3 class="panel-title">自我驱动 <span class="panel-en">DRIVEN BY</span></h3>
+                        <ul class="drive-list">
+                            <li data-emoji="📚">持续学习：整理设计模式笔记，探索现代C++特性在嵌入式项目的应用</li>
+                            <li data-emoji="✍️">技术沉淀：维护个人技术文档库，涵盖驱动调试案例与性能优化总结</li>
+                            <li data-emoji="🤝">工程规范：推动团队引入Git Flow及Code Review，提高代码交付质量</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- 核心项目 -->
+        <section class="content-section" id="projects">
+            <div class="section-head">
+                <span class="section-index">02</span>
+                <h2 class="section-title">项目</h2>
+                <span class="section-en">PROJECTS</span>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-name">高可靠PCIE通信系统</h3>
+                        <span class="project-role">主架构师</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">C++17</span>
+                        <span class="tech-tag">Qt</span>
+                        <span class="tech-tag">PCIE DMA</span>
+                        <span class="tech-tag">多线程</span>
+                        <span class="tech-tag">设计模式</span>
+                    </div>
+                    <ul class="project-achievements">
+                        <li>设计四层解耦架构（驱动抽象/数据缓存/业务处理/界面层），使用单例管理资源，模板方法处理数据流水线，支持8路板卡并发</li>
+                        <li>引入环形缓冲区+生产者消费者模型，消除多线程内存竞争，峰值吞吐40Gbps，CPU占用降低32%</li>
+                        <li>实现异常捕获与错误重传机制，系统7×24h稳定性测试通过</li>
+                    </ul>
+                </article>
+                <article class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-name">电动剪刀控制器（PWM驱动）</h3>
+                        <span class="project-role">独立开发</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">STM32</span>
+                        <span class="tech-tag">Altium Designer</span>
+                        <span class="tech-tag">PWM</span>
+                        <span class="tech-tag">VOFA+调试</span>
+                    </div>
+                    <ul class="project-achievements">
+                        <li>设计电机驱动板硬件电路（MOSFET、电流采样、电源管理）及STM32控制软件，实现剪刀开闭口PWM调速</li>
+                        <li>通过VOFA+波形工具完成PID参数整定，保证动作顺滑且堵转时及时保护</li>
+                        <li>集成过流/过温保护，产品已量产并应用于出口工具系列</li>
+                    </ul>
+                </article>
+                <article class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-name">跨平台流式处理库</h3>
+                        <span class="project-role">核心贡献者</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">C++17</span>
+                        <span class="tech-tag">迭代器模式</span>
+                        <span class="tech-tag">内存池</span>
+                        <span class="tech-tag">CMake</span>
+                    </div>
+                    <ul class="project-achievements">
+                        <li>基于迭代器模式设计流式数据解析库，支持GB级文件分块处理，内存峰值降低40%，延迟下降50%</li>
+                        <li>提供统一API，被3个产品组复用，累计节省开发人月约3人月</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- 技术亮点 -->
+        <section class="content-section" id="highlights">
+            <div class="section-head">
+                <span class="section-index">03</span>
+                <h2 class="section-title">亮点</h2>
+                <span class="section-en">HIGHLIGHTS</span>
+            </div>
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <div class="highlight-icon">🏗️</div>
+                    <div class="highlight-text">从驱动到上位机的全栈开发能力（PCIE/电机/传感器 → Qt/C# 系统）</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">⚡</div>
+                    <div class="highlight-text">10倍级性能优化经验（4Gbps→40Gbps DMA重构）</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🧩</div>
+                    <div class="highlight-text">设计模式与可扩展架构实践者（分层抽象、插件化工具）</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🔧</div>
+                    <div class="highlight-text">量产级硬件调试经验：原理图/PCB设计 + 示波器调测 + 故障闭环分析</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我 -->
+        <section class="content-section" id="contact">
+            <div class="contact-box">
+                <p class="contact-kicker">/ 联系我</p>
+                <h2 class="contact-title">欢迎交流技术、项目合作或职业机会</h2>
+                <p class="contact-goal">🎯 发挥软硬件协同设计优势，构建高可靠、可扩展的智能系统；未来希望深入工业通信协议与边缘计算方向。</p>
+                <div class="contact-actions">
+                    <a href="mailto:2716176542@qq.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-envelope"></i> 发邮件
+                    </a>
+                    <a href="https://github.com/CYY24612" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <button class="btn btn-ghost" id="wechatContact" aria-label="打开微信二维码">
+                        <i class="fab fa-weixin"></i> 微信
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year">2026</span> CYY · 嵌入式软件工程师</p>
+        <nav class="footer-nav" aria-label="页脚导航">
+            <a href="/">主页</a>
+            <a href="/blog/">博客</a>
+            <a href="/blog/rss.xml">RSS</a>
+        </nav>
+    </footer>
+</div>
+
+<!-- 微信二维码弹窗 -->
+<div class="modal-overlay" id="wechatModal" role="dialog" aria-modal="true" aria-label="微信二维码">
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose" aria-label="关闭二维码">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-body">
+            <div class="modal-icon"><i class="fab fa-weixin"></i></div>
+            <p class="modal-label">扫码添加微信</p>
+            <img src="/WeChat.png" alt="微信二维码" class="modal-qr" width="950" height="1295" loading="lazy">
+            <p class="modal-hint">欢迎交流技术、项目合作或职业机会</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
