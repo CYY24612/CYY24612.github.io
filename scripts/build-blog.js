@@ -258,8 +258,12 @@ ${items}
 
 /* ---------- 样式(hljs 主题 + 自定义) ---------- */
 function renderCss() {
-    const hljsTheme = fs.readFileSync(
+    // 深色主题为默认;浅色主题包在 prefers-color-scheme 媒体查询里,跟随系统明暗模式
+    const darkTheme = fs.readFileSync(
         path.join(ROOT, 'node_modules', 'highlight.js', 'styles', 'github-dark.css'), 'utf8');
+    const lightTheme = fs.readFileSync(
+        path.join(ROOT, 'node_modules', 'highlight.js', 'styles', 'github.css'), 'utf8');
+    const hljsTheme = `${darkTheme}\n@media (prefers-color-scheme: light) {\n${lightTheme}\n}`;
     const custom = `
 :root {
     --bg: oklch(17% 0.02 250);
