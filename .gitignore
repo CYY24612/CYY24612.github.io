@@ -355,3 +355,6 @@ blog/index.html
 blog/index.json
 blog/rss.xml
 blog/*/index.html
+
+# 内部定位文档(仅自己看,不提交)
+PROJECT_DIRECTION.md

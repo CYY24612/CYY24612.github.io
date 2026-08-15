@@ -9,10 +9,10 @@
 function initThemeSwitcher() {
     const root = document.documentElement;
     const toggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
 
     function updateIcon(theme) {
-        themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        // 亮色显示月亮, 暗色显示太阳
+        root.classList.toggle('icon-light', theme === 'light');
     }
 
     function toggleTheme() {
@@ -50,11 +50,69 @@ function initThemeSwitcher() {
 }
 
 // ============================================
+// 1.5 强调色切换 (金 / 青蓝 / 翡翠绿)
+// ============================================
+function initAccentSwitcher() {
+    const root = document.documentElement;
+    const ACCENTS = ['gold', 'cyan', 'green'];
+    const buttons = document.querySelectorAll('[data-accent-btn]');
+    const wrap = document.querySelector('.accent-wrap');
+    const toggle = document.getElementById('accentToggle');
+
+    function apply(accent) {
+        if (accent && accent !== 'gold') {
+            root.setAttribute('data-accent', accent);
+        } else {
+            root.removeAttribute('data-accent');
+        }
+        buttons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.accentBtn === accent);
+        });
+    }
+
+    function setOpen(open) {
+        if (!wrap) return;
+        wrap.classList.toggle('is-open', open);
+        if (toggle) toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    // 页面加载时恢复记忆的选择
+    const saved = localStorage.getItem('accent') || 'gold';
+    apply(saved);
+
+    // 调色盘展开/收起
+    if (toggle && wrap) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setOpen(!wrap.classList.contains('is-open'));
+        });
+        document.addEventListener('click', (e) => {
+            if (wrap.classList.contains('is-open') && !wrap.contains(e.target)) {
+                setOpen(false);
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && wrap.classList.contains('is-open')) {
+                setOpen(false);
+            }
+        });
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const accent = btn.dataset.accentBtn;
+            localStorage.setItem('accent', accent);
+            apply(accent);
+            setOpen(false);
+        });
+    });
+}
+
+// ============================================
 // 2. 顶部滚动进度条 + 导航滚动高亮
 // ============================================
 function initScrollSpy() {
     const progressBar = document.getElementById('progressBar');
-    const navLinks = document.querySelectorAll('.nav-links .nav-link');
     const sections = ['latest', 'intro', 'experience', 'projects', 'skills', 'highlights', 'contact'];
 
     // 页面滚动进度
@@ -66,14 +124,16 @@ function initScrollSpy() {
         progressBar.style.width = progress + '%';
     }
 
-    // 当前区块高亮
+    // 当前区块高亮(仅锚点链接: 主导航为页面链接, 本页目录为锚点)
+    const spyTargets = document.querySelectorAll('.nav-links .nav-link, .section-nav a');
     const spyObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.classList.toggle('active',
-                        link.getAttribute('href') === '#' + id);
+                spyTargets.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (!href || href.charAt(0) !== '#') return;
+                    link.classList.toggle('active', href === '#' + id);
                 });
             }
         });
@@ -117,6 +177,26 @@ function initSplash() {
             }, 850);
         });
     });
+}
+
+// ============================================
+// 3.5 全屏氛围光(鼠标跟随, 无界)
+// ============================================
+function initNavScroll() {
+    const nav = document.getElementById('siteNav');
+    if (!nav) return;
+    let ticking = false;
+    const update = () => {
+        nav.classList.toggle('is-scrolled', window.scrollY > 24);
+        ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+        }
+    }, { passive: true });
+    update();
 }
 
 // ============================================
@@ -235,6 +315,24 @@ function initAnimations() {
 }
 
 // ============================================
+// 4.1 卡片 spotlight hover(鼠标跟随光晕)
+// ============================================
+function initCardSpotlight() {
+    const cards = document.querySelectorAll('.blog-card, .project-card, .timeline-card, .highlight-item, .post-item, .related-item');
+    if (!cards.length) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return; // 触屏不做
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--spot-x', (e.clientX - rect.left) + 'px');
+            card.style.setProperty('--spot-y', (e.clientY - rect.top) + 'px');
+        });
+    });
+}
+
+// ============================================
 // 5. 首页博客卡片(fetch blog/index.json)
 // ============================================
 function initBlogPreview() {
@@ -247,17 +345,36 @@ function initBlogPreview() {
             return res.json();
         })
         .then(data => {
-            const posts = (data.posts || []).slice(0, 3);
+            const all = data.posts || [];
+            // 精选(护城河)文章优先, 按日期倒序; 不足 3 篇时用最新文章补齐
+            const featured = all.filter(p => p.featured).slice(0, 3);
+            const backup = all.filter(p => !p.featured);
+            const posts = featured.length >= 3 ? featured : featured.concat(backup).slice(0, 3);
             if (!posts.length) throw new Error('no posts');
-            container.innerHTML = posts.map(post => `
+            // 渐变封面: 按顺序取一组预置渐变
+            const COVERS = [
+                'linear-gradient(135deg, oklch(28% 0.06 250) 0%, oklch(40% 0.12 235) 100%)',
+                'linear-gradient(135deg, oklch(28% 0.05 165) 0%, oklch(40% 0.13 165) 100%)',
+                'linear-gradient(135deg, oklch(30% 0.05 45) 0%, oklch(42% 0.11 85) 100%)'
+            ];
+            container.innerHTML = posts.map((post, i) => {
+                const cover = COVERS[i % COVERS.length];
+                const tag = (post.tags || [])[0] || 'TECH';
+                return `
                 <article class="blog-card">
-                    <div class="blog-meta">
-                        <time class="blog-date" datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
-                        <span class="blog-tags">${(post.tags || []).slice(0, 3).map(t => `<a class="blog-tag" href="/blog/tags/#tag-${encodeURIComponent(t)}">${escapeHtml(t)}</a>`).join('')}</span>
+                    <a class="blog-cover" href="${post.url}" aria-hidden="true" tabindex="-1" style="background:${cover}">
+                        <span class="blog-cover-tag">${escapeHtml(tag)}</span>
+                    </a>
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            <time class="blog-date" datetime="${escapeHtml(post.date)}">${escapeHtml(post.date)}</time>
+                            <span class="blog-tags">${(post.tags || []).slice(0, 3).map(t => `<a class="blog-tag" href="/blog/tags/#tag-${encodeURIComponent(t)}">${escapeHtml(t)}</a>`).join('')}</span>
+                        </div>
+                        <h3 class="blog-title"><a href="${post.url}">${escapeHtml(post.title)}</a></h3>
+                        ${post.summary ? `<p class="blog-summary">${escapeHtml(post.summary)}</p>` : ''}
                     </div>
-                    <h3 class="blog-title"><a href="${post.url}">${escapeHtml(post.title)}</a></h3>
-                    ${post.summary ? `<p class="blog-summary">${escapeHtml(post.summary)}</p>` : ''}
-                </article>`).join('');
+                </article>`;
+            }).join('');
         })
         .catch(() => {
             container.innerHTML = '<p class="blog-loading">博客内容加载失败，<a href="/blog/" style="color:var(--accent)">点此直接访问 →</a></p>';
@@ -328,12 +445,15 @@ function initFooterYear() {
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     initThemeSwitcher();
+    initAccentSwitcher();
     initScrollSpy();
     initSplash();
+    initNavScroll();
     initHeroGlow();
     initCountUp();
     initNavBurger();
     initAnimations();
+    initCardSpotlight();
     initBlogPreview();
     initWechatModal();
     initFooterYear();

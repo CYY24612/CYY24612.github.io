@@ -3,6 +3,9 @@ title: 性能分析:从"感觉慢"到"知道慢在哪"
 date: 2026-08-09
 tags: [性能优化, 调试, 方法论]
 summary: 先测量,再优化。计时、追踪器与采样器、火焰图、内存分析——一套完整的性能分析工具箱,以及嵌入式场景下的变体。
+featured: true
+related: [embedded-debugging-methodology, pcie-data-link-layer]
+project: 高可靠PCIE通信系统
 ---
 
 "程序有点慢"是需求,不是问题。"慢在哪、慢多少、为什么"才是问题。性能优化的第一原则是:**先测量,再优化**。没有数据支撑的优化叫猜,有了数据叫工程。

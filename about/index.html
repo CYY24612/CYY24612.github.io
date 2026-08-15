@@ -20,8 +20,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
     <link rel="stylesheet" href="/assets/css/main.min.css">
     <script src="/assets/js/main.min.js" defer></script>
@@ -30,6 +28,12 @@
 <body>
 <a href="#main-content" class="skip-link">跳转到主内容</a>
 
+<!-- 全屏科技网格(无界) -->
+<div class="page-grid" aria-hidden="true"></div>
+
+<!-- 右上角静态光斑 -->
+<div class="page-orb" aria-hidden="true"></div>
+
 <!-- 顶部滚动进度条 -->
 <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="progressBar"></div></div>
 
@@ -37,27 +41,30 @@
 <header class="site-nav" id="siteNav">
     <a class="brand" href="/">CYY<span class="brand-dot">.</span></a>
     <nav class="nav-links" id="navLinks" aria-label="页面导航">
-        <a class="nav-link" href="#experience">经验</a>
-        <a class="nav-link" href="#projects">项目</a>
-        <a class="nav-link" href="#skills">技能</a>
-        <a class="nav-link" href="#highlights">亮点</a>
-        <a class="nav-link" href="#contact">联系</a>
+        <a class="nav-link" href="/blog/">博客</a>
+        <a class="nav-link active" href="/about/">关于我</a>
+        <a class="nav-link" href="/">主页</a>
     </nav>
     <div class="nav-actions">
-        <a class="nav-icon" href="/" aria-label="主页" title="主页">
-            <i class="fas fa-home"></i>
-        </a>
-        <a class="nav-icon" href="/blog/" aria-label="博客" title="博客">
-            <i class="fas fa-pen-nib"></i>
-        </a>
         <a class="nav-icon" href="https://github.com/CYY24612" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github"></i>
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         </a>
+        <div class="accent-wrap">
+            <button class="accent-toggle" id="accentToggle" aria-label="切换强调色" aria-expanded="false" aria-controls="accentMenu">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 22a10 10 0 1 1 10-10c0 1.66-1.34 3-3 3h-2.5a2.5 2.5 0 0 0-2.5 2.5c0 .83-.67 1.5-1.5 1.5H12z"/><circle cx="7.5" cy="10.5" r="1.5"/><circle cx="12" cy="7.5" r="1.5"/><circle cx="16.5" cy="10.5" r="1.5"/></svg>
+            </button>
+            <div class="accent-menu" id="accentMenu" role="group" aria-label="切换强调色">
+                <button class="accent-dot accent-gold active" data-accent-btn="gold" aria-label="金色" title="金色"></button>
+                <button class="accent-dot accent-cyan" data-accent-btn="cyan" aria-label="青蓝" title="青蓝"></button>
+                <button class="accent-dot accent-green" data-accent-btn="green" aria-label="翡翠绿" title="翡翠绿"></button>
+            </div>
+        </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="切换亮暗主题">
-            <i class="fas fa-sun" id="theme-icon"></i>
+            <svg class="icon-svg icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="icon-svg icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
         <button class="nav-burger" id="navBurger" aria-label="展开菜单" aria-expanded="false" aria-controls="navLinks">
-            <i class="fas fa-bars"></i>
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
     </div>
 </header>
@@ -73,6 +80,7 @@
                     <h1 class="intro-name">CYY</h1>
                     <p class="hero-role">嵌入式软件工程师 · 软硬件协同设计 · 高性能通信系统</p>
                     <p class="hero-desc">构建高可靠、可扩展的智能系统，拥有从硬件底层到应用层的全栈视野，热衷解决复杂系统问题。</p>
+                    <p class="hero-focus">🎯 <strong>当前聚焦</strong>：嵌入式高性能通信（PCIe/DMA）与可维护的 C/C++ 架构——见<a href="/blog/">技术博客</a>。</p>
                 </div>
                 <div class="intro-aside">
                     <div class="hero-avatar">
@@ -82,11 +90,20 @@
                         <li class="stat"><span class="stat-num"><span data-count="40">0</span>Gbps</span><span class="stat-label">PCIE DMA 峰值吞吐</span></li>
                         <li class="stat"><span class="stat-num"><span data-count="5">0</span>W+</span><span class="stat-label">产品年出货量</span></li>
                         <li class="stat"><span class="stat-num"><span data-count="10">0</span>×</span><span class="stat-label">数据通路性能提升</span></li>
-                        <li class="stat"><span class="stat-num"><span data-count="14">0</span>+</span><span class="stat-label">技术笔记</span></li>
+                        <li class="stat"><span class="stat-num"><span data-count="16">0</span>+</span><span class="stat-label">技术笔记</span></li>
                     </ul>
                 </div>
             </div>
         </section>
+
+        <!-- 本页目录 -->
+        <nav class="section-nav" aria-label="本页目录">
+            <a href="#experience">经验</a>
+            <a href="#projects">项目</a>
+            <a href="#skills">技能</a>
+            <a href="#highlights">亮点</a>
+            <a href="#contact">联系</a>
+        </nav>
 
         <!-- 工作经验 + 技能面板 -->
         <section class="content-section" id="experience">
@@ -240,6 +257,13 @@
                         <li>引入环形缓冲区+生产者消费者模型，消除多线程内存竞争，峰值吞吐40Gbps，CPU占用降低32%</li>
                         <li>实现异常捕获与错误重传机制，系统7×24h稳定性测试通过</li>
                     </ul>
+                    <div class="project-posts">
+                        <span class="project-posts-label">相关笔记</span>
+                        <a href="/blog/pcie-architecture-overview/">PCIe 架构总览</a>
+                        <a href="/blog/pcie-data-link-layer/">数据链路层</a>
+                        <a href="/blog/pcie-transaction-layer/">事务层</a>
+                        <a href="/blog/performance-analysis-methodology/">性能分析</a>
+                    </div>
                 </article>
                 <article class="project-card">
                     <div class="project-header">
@@ -257,6 +281,11 @@
                         <li>通过VOFA+波形工具完成PID参数整定，保证动作顺滑且堵转时及时保护</li>
                         <li>集成过流/过温保护，产品已量产并应用于出口工具系列</li>
                     </ul>
+                    <div class="project-posts">
+                        <span class="project-posts-label">相关笔记</span>
+                        <a href="/blog/embedded-state-machine/">状态机实战</a>
+                        <a href="/blog/embedded-debugging-methodology/">调试方法论</a>
+                    </div>
                 </article>
                 <article class="project-card">
                     <div class="project-header">
@@ -273,6 +302,11 @@
                         <li>基于迭代器模式设计流式数据解析库，支持GB级文件分块处理，内存峰值降低40%，延迟下降50%</li>
                         <li>提供统一API，被3个产品组复用，累计节省开发人月约3人月</li>
                     </ul>
+                    <div class="project-posts">
+                        <span class="project-posts-label">相关笔记</span>
+                        <a href="/blog/embedded-design-patterns/">设计模式实战</a>
+                        <a href="/blog/solid-in-embedded-c/">SOLID 落地 C</a>
+                    </div>
                 </article>
             </div>
         </section>
@@ -312,13 +346,13 @@
                 <p class="contact-goal">🎯 发挥软硬件协同设计优势，构建高可靠、可扩展的智能系统；未来希望深入工业通信协议与边缘计算方向。</p>
                 <div class="contact-actions">
                     <a href="mailto:2716176542@qq.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-envelope"></i> 发邮件
+                        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> 发邮件
                     </a>
                     <a href="https://github.com/CYY24612" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i> GitHub
+                        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> GitHub
                     </a>
                     <button class="btn btn-ghost" id="wechatContact" aria-label="打开微信二维码">
-                        <i class="fab fa-weixin"></i> 微信
+                        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> 微信
                     </button>
                 </div>
             </div>
@@ -339,10 +373,10 @@
 <div class="modal-overlay" id="wechatModal" role="dialog" aria-modal="true" aria-label="微信二维码">
     <div class="modal-content">
         <button class="modal-close" id="modalClose" aria-label="关闭二维码">
-            <i class="fas fa-times"></i>
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
         <div class="modal-body">
-            <div class="modal-icon"><i class="fab fa-weixin"></i></div>
+            <div class="modal-icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
             <p class="modal-label">扫码添加微信</p>
             <img src="/WeChat.png" alt="微信二维码" class="modal-qr" width="950" height="1295" loading="lazy">
             <p class="modal-hint">欢迎交流技术、项目合作或职业机会</p>

@@ -3,6 +3,9 @@ title: PCIe 事务层:TLP 的一生
 date: 2026-07-26
 tags: [PCIE, 总线协议, 嵌入式]
 summary: TLP 是 PCIe 世界里唯一的"通用语言"。拆解 TLP 结构、posted/non-posted 事务、4KB 边界规则,以及交换机如何给 TLP 指路。
+featured: true
+related: [pcie-architecture-overview, pcie-data-link-layer]
+project: 高可靠PCIE通信系统
 ---
 
 事务层(Transaction Layer)是 PCIe 离软件最近的一层:CPU 的每一次读、写、配置访问,都要在这里被翻译成一个标准化的数据包——**TLP(Transaction Layer Packet)**。

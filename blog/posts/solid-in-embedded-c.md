@@ -3,6 +3,9 @@ title: SOLID 原则:从桌面开发到单片机
 date: 2026-08-06
 tags: [设计原则, 架构, C语言]
 summary: 单一职责、开闭、里氏替换、接口隔离、依赖倒置——五个原则在 C 语言里怎么表达?函数指针表、接口结构体,以及 OSAL 这个经典案例。
+featured: true
+related: [embedded-design-patterns, mcu-four-layer-architecture]
+project: 高可靠PCIE通信系统
 ---
 
 SOLID 是面向对象设计的五个原则,但它的适用性远不止 OO 语言。上一篇文章讲了嵌入式设计模式,这篇聊背后的原则——**SOLID 在 C 语言里怎么落地**。C 没有 class,没有接口关键字,但它的结构体 + 函数指针完全可以表达同样的思想,而且表达得更"朴素"。

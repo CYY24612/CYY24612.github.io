@@ -3,6 +3,9 @@ title: PCIe 数据链路层:如何在不可靠的链路上实现可靠传输
 date: 2026-07-23
 tags: [PCIE, 总线协议, 嵌入式]
 summary: 序列号、LCRC、重传缓冲区、Ack/Nak——数据链路层用一套教科书式的机制,让上层软件完全感知不到物理链路的不可靠。
+featured: true
+related: [pcie-architecture-overview, pcie-transaction-layer]
+project: 高可靠PCIE通信系统
 ---
 
 上一篇文章讲了 PCIe 的分层架构。这一层——数据链路层(Data Link Layer, DLL)——是整个 PCIe 可靠性设计的核心:它的任务是在一条**物理上不可靠**的链路上,建立一个**逻辑上绝对可靠**的数据通路。

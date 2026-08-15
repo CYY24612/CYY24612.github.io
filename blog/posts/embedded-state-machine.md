@@ -3,6 +3,9 @@ title: 嵌入式状态机实战:从 if-else 深渊到事件驱动
 date: 2026-08-12
 tags: [状态机, 架构, 嵌入式]
 summary: 状态、事件、转移——用函数指针实现一个轻量 FSM,支持进入/退出事件,从按键消抖到协议解析一网打尽,还聊聊状态机与 RTOS 的关系。
+featured: true
+related: [mcu-four-layer-architecture, embedded-design-patterns]
+project: 高可靠PCIE通信系统
 ---
 
 嵌入式程序的复杂度,一大半藏在"逻辑分支"里。业务一旦有状态(空闲、运行、故障、低功耗……),`if (state && event && flag)` 的嵌套就会迅速失控。状态机(FSM)是嵌入式领域处理这类问题最成熟、最可靠的武器——它本质上是一种**架构**,不限于任何语言。

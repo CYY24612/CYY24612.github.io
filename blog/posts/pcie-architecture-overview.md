@@ -3,6 +3,9 @@ title: PCIe 架构总览:从并行总线到串行分层协议
 date: 2026-07-20
 tags: [PCIE, 总线协议, 嵌入式]
 summary: PCI 时代终结后,PCIe 用串行差分信号和分层协议解决了并行总线的时序难题。本文总览事务层、数据链路层、物理层如何各司其职。
+featured: true
+related: [pcie-data-link-layer, pcie-transaction-layer]
+project: 高可靠PCIE通信系统
 ---
 
 做嵌入式或驱动开发,总会和 PCIe 打交道——它是如今服务器、PC、工控机上事实标准的高速互连总线。这篇文章从"为什么要有 PCIe"讲起,梳理它的分层架构,把三层协议各自的职责讲清楚。

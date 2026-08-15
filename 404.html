@@ -3,48 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - 页面不存在 | CYY</title>
     <meta name="robots" content="noindex">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #14161f;
-            font-family: 'Segoe UI', 'Microsoft YaHei', system-ui, sans-serif;
-            color: #f2f4fc;
-            text-align: center;
-            padding: 24px;
-        }
-        .code {
-            font-size: clamp(4rem, 15vw, 7rem);
-            font-weight: 800;
-            letter-spacing: 0.05em;
-            background: linear-gradient(135deg, #d4a017, #e6b82e);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .msg { margin: 16px 0 32px; color: #9aa2bd; }
-        a {
-            display: inline-block;
-            color: #d4a017;
-            text-decoration: none;
-            border: 1px solid rgba(212, 160, 23, 0.4);
-            padding: 10px 28px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        a:hover { background: rgba(212, 160, 23, 0.12); }
-    </style>
+    <meta name="theme-color" content="#0e1117">
+    <title>404 - 页面不存在 | CYY</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/assets/css/main.min.css">
+    <script src="/assets/js/main.min.js" defer></script>
 </head>
 <body>
-    <div>
-        <div class="code">404</div>
-        <p class="msg">你访问的页面不存在或已被移动</p>
-        <a href="/">返回首页</a>
+<a href="#main-content" class="skip-link">跳转到主内容</a>
+
+<!-- 全屏科技网格(无界) -->
+<div class="page-grid" aria-hidden="true"></div>
+
+<!-- 右上角静态光斑 -->
+<div class="page-orb" aria-hidden="true"></div>
+
+<!-- 顶部滚动进度条 -->
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="progressBar"></div></div>
+
+<!-- 顶部导航 -->
+<header class="site-nav" id="siteNav">
+    <a class="brand" href="/">CYY<span class="brand-dot">.</span></a>
+    <nav class="nav-links" id="navLinks" aria-label="页面导航">
+        <a class="nav-link" href="/blog/">博客</a>
+        <a class="nav-link" href="/about/">关于我</a>
+        <a class="nav-link" href="/">主页</a>
+    </nav>
+    <div class="nav-actions">
+        <a class="nav-icon" href="https://github.com/CYY24612" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <div class="accent-wrap">
+            <button class="accent-toggle" id="accentToggle" aria-label="切换强调色" aria-expanded="false" aria-controls="accentMenu">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 22a10 10 0 1 1 10-10c0 1.66-1.34 3-3 3h-2.5a2.5 2.5 0 0 0-2.5 2.5c0 .83-.67 1.5-1.5 1.5H12z"/><circle cx="7.5" cy="10.5" r="1.5"/><circle cx="12" cy="7.5" r="1.5"/><circle cx="16.5" cy="10.5" r="1.5"/></svg>
+            </button>
+            <div class="accent-menu" id="accentMenu" role="group" aria-label="切换强调色">
+                <button class="accent-dot accent-gold active" data-accent-btn="gold" aria-label="金色" title="金色"></button>
+                <button class="accent-dot accent-cyan" data-accent-btn="cyan" aria-label="青蓝" title="青蓝"></button>
+                <button class="accent-dot accent-green" data-accent-btn="green" aria-label="翡翠绿" title="翡翠绿"></button>
+            </div>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="切换亮暗主题">
+            <svg class="icon-svg icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="icon-svg icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav-burger" id="navBurger" aria-label="展开菜单" aria-expanded="false" aria-controls="navLinks">
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
     </div>
+</header>
+
+<main class="main-content" id="main-content" role="main" aria-label="主要内容">
+    <section class="error-page">
+        <p class="error-code">404</p>
+        <h1 class="error-title">页面不存在</h1>
+        <p class="error-desc">你访问的页面不存在或已被移动。可能是我删了它，也可能是链接写错了。</p>
+        <div class="error-actions">
+            <a class="btn btn-primary" href="/"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> 返回首页</a>
+            <a class="btn btn-ghost" href="/blog/"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg> 去博客看看</a>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© <span id="year">2026</span> CYY · 嵌入式软件工程师</p>
+    <nav class="footer-nav" aria-label="页脚导航">
+        <a href="/blog/">博客</a>
+        <a href="/about/">关于我</a>
+        <a href="/">主页</a>
+    </nav>
+</footer>
+
 </body>
 </html>

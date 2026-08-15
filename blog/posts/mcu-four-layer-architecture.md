@@ -3,6 +3,9 @@ title: 单片机程序四层架构:从裸机走向可维护
 date: 2026-08-01
 tags: [嵌入式, 架构, 状态机]
 summary: BSP、OSAL、Service、APP——四层分离的工程结构,加上消息总线与状态机,让单片机程序从"能跑"变成"能维护、能复用、能测试"。
+featured: true
+related: [embedded-state-machine, embedded-design-patterns]
+project: 高可靠PCIE通信系统
 ---
 
 单片机程序写多了会有一个共同感受:裸机时代"功能全写在 main 里"的写法,一旦项目超过两三万行、功能超过三四个模块,就开始失控——改一个传感器驱动,要连带改 UI;换一个 RTOS,全工程 API 跟着遭殃。
