@@ -95,9 +95,7 @@ function head(cssHref, title, canonicalPath = '/blog/') {
     <link rel="canonical" href="${SITE_URL}${canonicalPath}">
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="/assets/fonts/plus-jakarta-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/css/main.min.css">
     <link rel="stylesheet" href="${cssHref}">
     <script src="/assets/js/main.min.js" defer></script>
