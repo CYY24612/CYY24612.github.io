@@ -82,16 +82,21 @@ const posts = fs.existsSync(POSTS_DIR)
     : [];
 
 /* ---------- 页面骨架 ---------- */
-function head(cssHref, title, canonicalPath = '/blog/') {
+function head(cssHref, title, canonicalPath = '/blog/', description = BLOG_DESC, ogType = 'website') {
     const pageTitle = title || `${BLOG_TITLE} · ${BLOG_DESC}`;
+    const desc = escapeHtml(description || BLOG_DESC);
     return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${pageTitle}</title>
-    <meta name="description" content="${BLOG_DESC}">
+    <title>${escapeHtml(pageTitle)}</title>
+    <meta name="description" content="${desc}">
     <meta name="theme-color" content="#0e1117">
+    <meta property="og:title" content="${escapeHtml(pageTitle)}">
+    <meta property="og:description" content="${desc}">
+    <meta property="og:type" content="${ogType}">
+    <meta property="og:url" content="${SITE_URL}${canonicalPath}">
     <link rel="canonical" href="${SITE_URL}${canonicalPath}">
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -234,7 +239,7 @@ ${html}
         ${relatedBlock}
         <nav class="pager">${pager.join('')}</nav>`;
 
-    return head('/blog/blog.css', pageTitle) + body + footer;
+    return head('/blog/blog.css', pageTitle, `/blog/${post.slug}/`, post.summary, 'article') + body + footer;
 }
 
 /* ---------- 标签统计与云 ---------- */
